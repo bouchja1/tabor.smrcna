@@ -1,0 +1,173 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+ *}
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>{ifset title}{include title|striptags} | {/ifset}Nette Sandbox</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="{$basePath}/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{$basePath}/font/font.css">
+		<link href="{$basePath}/css/style.css" rel="stylesheet" media="screen">
+		<link href="{$basePath}/css/responsive.css" rel="stylesheet" media="screen">
+
+		{block head}{/block}
+	</head>
+
+<body>
+	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+
+<div class="fix header_area">
+   <div class="fix wrap header">
+      <div class="logo floatleft">
+         <h1>Letní dětský tábor Smrčná</h1>
+      </div>
+      <div class="manu floatright">
+         <ul id="nav-top">
+            <li><a href="{plink :Front:Homepage:default}" title="Zpět na úvodní stránku">Aktuálně</a></li>
+            <li><a href="{plink :Front:Camp:default}" title="Aktuální táborový běh">Tábor 2017</a></li>
+            <li><a href="{plink :Front:Location:default}" title="Kde přesně se tábor nachází?">Lokalita</a></li>
+            <li><a href="{plink :Front:About:default}" title="Historie tábora ve Smrčné nad Sázavou">Historie</a></li>
+            <li><a href="{plink :Front:Contact:default}" title="Kontakt">Kontakt</a></li>
+         </ul>
+      </div>
+   </div>
+</div>
+<!--Clean template by WpFreeware.com-->
+<div class="fix content_area">
+   <div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+   <div class="fix top_add_bar">
+      <div class="addbar_leaderborard"><img src="http://placehold.it/728x90"/></div>
+   </div>
+   <div class="fix wrap content_wrapper">
+      <div class="fix content">
+         <div class="fix main_content floatleft">
+            {include content}
+           <!-- NEPREHLEDNETE START -->
+         <div class="fix sidebar floatright">
+            <div class="fix single_sidebar">
+               <div class="popular_post fix">
+                  <h2>Nepřehlédněte</h2>
+                  <div class="fix single_popular">
+                     <img src="{$basePath}/images/warning.png" class="floatleft"/>
+                     <h2>Přihlášky</h2>
+                     <p>Letos probíhá přihlašování na tábor přes web http://ddmjihlava.iddm.cz/</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- NEPREHLEDNETE END -->
+         <!-- TIMELINE START -->
+         <div class="fix sidebar floatright">
+            <div class="fix single_sidebar">
+               <div class="popular_post fix">
+                  <h2>(Skoro) živě z tábora</h2>
+                  <div class="fix single_popular">
+                     <img src="images/popular.png" class="floatleft"/>
+                     <h2>Vestibum Malesuada Etiam Magna</h2>
+                     <p>12 Nov, 2012</p>
+                  </div>
+                  <div class="fix single_popular">
+                     <img src="images/popular.png" class="floatleft"/>
+                     <h2>Vestibum Malesuada Etiam Magna</h2>
+                     <p>12 Nov, 2012</p>
+                  </div>
+                  <div class="fix single_popular">
+                     <img src="images/popular.png" class="floatleft"/>
+                     <h2>Vestibum Malesuada Etiam Magna</h2>
+                     <p>12 Nov, 2012</p>
+                  </div>
+               </div>
+            </div>
+            <div class="fix single_sidebar">
+               <h2>Odkazy</h2>
+               <p><a href="http://www.ddmjihlava.cz/"><img class="displayed" src="{$basePath}/images/ddm.png" alt="Dům dětí a mládeže Jihlava." border="0" width="90px"></a></p>
+               <p><a href="http://www.detske-tabory.info" title="Letní dětské tábory, katalog rekreací pro děti."><img class="displayed" src="http://detske-tabory.info/zvyhodneni/ikonka.php?zvyhodni=491" alt="Letní dětské tábory, ktalog rekreací pro děti.." width="90px" height="31" border="1" /></a></p>
+               <p><a href="http://www.taboreni.cz/tabor/?zdroj=829" title="Dětský tábor"><img class="displayed" src="http://icon.taboreni.cz/1/829/125x62-d-t.png" alt="Dětský tábor" width="90px"></a></p>
+            </div>
+            <!-- TIMELINE END -->
+         </div>
+      </div>
+   </div>
+</div>
+<!--Clean template by WpFreeware.com-->
+<div class="fix footer_top_area">
+   <div class="fix footer_top wrap">
+      <div class="fix footer_top_container">
+         <div class="fix single_footer floatleft">
+            <h2>Pořadatel</h2>
+            <p>DDM Jihlava</p>
+            <p>Brněnská 670/46, 586 01, Jihlava</p>
+            <p><a href="www.ddmjihlava.cz" target="_blank">www.ddmjihlava.cz</a></p>
+            <p>tel.: 567303521</p>
+         </div>
+         <div class="fix single_footer floatright">
+            <div class="popular_post fix">
+               <h2>Kontakty</h2>
+               <div class="fix single_popular">
+                  <img src="{$basePath}/images/link1.png" class="floatleft"/>
+                  <a href="">
+                     <h2>Napište nám email</h2>
+                  </a>
+               </div>
+               <div class="fix single_popular">
+                  <img src="{$basePath}/images/link2.png" class="floatleft"/>
+                  <a href="https://www.facebook.com/taborsmrcna/" target="_blank">
+                     <h2>Staňte se fanoušky na facebooku</h2>
+                  </a>
+               </div>
+               <div class="fix single_popular">
+                  <img src="{$basePath}/images/link4.png" class="floatleft"/>
+                  <a href="https://www.youtube.com/channel/UCPpWoBYBXl3IIIEFilFt4hA" target="_blank">
+                     <h2>Podívejte se na náš kanál na youtube</h2>
+                  </a>
+               </div>
+               <div class="fix single_popular">
+                  <img src="{$basePath}/images/link5.png" class="floatleft"/>
+                  <a href="http://taborsmrcna.rajce.idnes.cz/" target="_blank">
+                     <h2>Podívejte se na náše fotky na rajče.net</h2>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="fix footer_area">
+   <div class="wrap">
+      <div class="fix copyright_text floatleft">
+         <p>Designed By <a href="http://www.wpfreeware.com" rel="nofollow">WpFreeware</a> | Programmed by <a href="http://www.janbouchner.cz">Honza Bouchner</a></p>
+      </div>
+      <div class="fix copyright_text floatright">
+         <p>Stránky již navštívilo XY návštěvníků.</p>
+      </div>
+   </div>
+</div>
+
+	{block scripts}
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+	<script src="{$basePath}/js/main.js"></script>
+		<script type="text/javascript" src="{$basePath}/js/placeholder_support_IE.js"></script>
+		<script type="text/javascript" src="{$basePath}/js/selectnav.min.js"></script>
+		<script type="text/javascript">
+			selectnav('nav-top', {
+			  label: '-Navigation-',
+			  nested: true,
+			  indent: '-'
+			});
+
+			selectnav('nav-bottom', {
+			  label: '-Navigation-',
+			  nested: true,
+			  indent: '-'
+			});
+		</script>
+		<script src="http://code.jquery.com/jquery.js"></script>
+	{/block}
+</body>
+</html>

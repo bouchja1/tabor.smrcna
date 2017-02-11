@@ -1,0 +1,24 @@
+	services:
+		categoryRepository:
+			class: \Models\Repositories\MySql\CategoryRepository
+
+		codeRepository:
+			class: \Models\Repositories\MySql\CodeRepository
+
+		filmRepository:
+			class: \Models\Repositories\MySql\FilmRepository
+
+		orderRepository:
+			class: \Models\Repositories\MySql\OrderRepository
+
+		categoryModel:
+			class: \Models\CategoryModel
+
+		codeModel:
+			class: \Models\CodeModel
+
+		filmModel:
+			class: \Models\FilmModel
+
+		orderModel:
+			class: \Models\OrderModel

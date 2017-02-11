@@ -1,0 +1,6 @@
+	services:
+
+		searchComponentFactory:
+			implement: \FrontModule\Components\ISearchComponentFactory
+			parameters: [day]
+			arguments: [%day%]
