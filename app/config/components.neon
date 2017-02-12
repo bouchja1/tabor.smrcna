@@ -14,5 +14,8 @@
 		warningComponentFactory:
 			implement: \FrontModule\Components\IWarningComponentFactory
 
+		currentCampComponentFactory:
+			implement: \FrontModule\Components\ICurrentCampComponentFactory
+
 		signComponentFactory:
 			implement: \AdminModule\Components\ISignComponentFactory

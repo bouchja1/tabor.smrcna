@@ -10,20 +10,55 @@ class CurrentlyPresenter extends ModuleBasePresenter
 {
 
     /**
-     * @var \Models\NewsModel
+     * @var \FrontModule\Components\ICurrentCampComponentFactory
      */
-    private $newsModel;
+    private $currentCampComponentFactory;
+
+    private $editedCurrentCamp;
+
+    /**
+     * @var \Models\CurrentCampModel
+     */
+    private $currentCampModel;
 
 	public function renderDefault()
 	{
-        $news = $this->newsModel->findAllNews();
-        $this->template->news = $news;
-        $this->template->newsCount = count($news);
+        $current = $this->currentCampModel->findAllCamps();
+        if (sizeof($current) > 0) {
+            $this->template->current = $current[0];
+        } else {
+            $this->template->current = null;
+        }
 	}
 
-    public final function injectNewsModel(\Models\NewsModel $newsModel) {
-        $this->newsModel = $newsModel;
+    public function actionEdit($id) {
+        $this->editedCurrentCamp = $this->currentCampModel->findCurrentYearById($id);
     }
 
+    public function renderEdit()
+    {
+        $this->template->currentToEdit = $this->editedCurrentCamp;
+    }
 
+    public final function injectCurrentCampModel(\Models\CurrentCampModel $currentCampModel) {
+        $this->currentCampModel = $currentCampModel;
+    }
+
+    public final function injectCreateCurrentCampComponentFactory(\FrontModule\Components\ICurrentCampComponentFactory $currentCampComponentFactory) {
+        $this->currentCampComponentFactory = $currentCampComponentFactory;
+    }
+
+    /**
+     * @return \FrontModule\Components\CurrentCampComponent
+     */
+    protected function createComponentCurrentCampFormComponent() {
+        return $this->currentCampComponentFactory->create($this->currentCampModel, null);
+    }
+
+    /**
+     * @return \FrontModule\Components\CurrentCampComponent
+     */
+    protected function createComponentEditCurrentCampFormComponent() {
+        return $this->currentCampComponentFactory->create($this->currentCampModel, $this->editedCurrentCamp);
+    }
 }

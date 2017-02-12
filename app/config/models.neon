@@ -20,6 +20,9 @@
 		mailsModel:
 			class: \Models\MailsModel
 
+		currentCampModel:
+			class: \Models\CurrentCampModel
+
 		warningsModel:
 			class: \Models\WarningsModel
 

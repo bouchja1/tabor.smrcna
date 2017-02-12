@@ -3,7 +3,19 @@
 {/block}
 
 {block content}
-            uvodni stranka aktualniho tabora
+    <h1>Vložení nového termínu</h1>
+
+    {control currentCampFormComponent}
+
+    {if $current != null}
+        <tr>
+            <td>{$current->year}</td>
+            <td>{$current->text}</td>
+            <td><a href="{plink :Admin:Currently:edit $current->id}" title="Upravit">Upravit</a></td>
+        </tr>
+    {else}
+        V DB není žádný termín.
+    {/if}
 {/block}
 {block scripts}
 {/block}
