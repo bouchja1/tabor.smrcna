@@ -4,9 +4,9 @@ namespace FrontModule;
 
 use Nette;
 use App\Model;
+use App\FrontModule\Presenters\ModuleBasePresenter;
 
-
-class LocationPresenter extends \Nette\Application\UI\Presenter
+class LocationPresenter extends ModuleBasePresenter
 {
 
 	public function renderDefault()

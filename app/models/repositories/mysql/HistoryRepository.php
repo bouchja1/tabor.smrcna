@@ -10,6 +10,11 @@ final class HistoryRepository extends BaseRepository implements HistoryRepositor
 
     const TABLE_NAME = "history";
 
+    public function findHistoryById($id)
+    {
+        return $this->findById($id);
+    }
+
     public function findAllTerms() {
         return $this->historyQuery()->fetchAll();
     }

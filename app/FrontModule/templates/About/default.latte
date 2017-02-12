@@ -1,17 +1,19 @@
 {block content}
-						<div class="single_page_content fix">
-							<h1>Táborová historie</h1>
-                            <blockquote>
-                                V této sekci bychom rádi zavzpomínali na předešlé tábory, na hry, které se hrály, na lidi kteří s námi jezdili. Pro ty, kdo s námi na tábory jezdili to bude příležitost, jak si připomenout chvíle na táboře, pro vás ostatníto je možnost podívat se, co za hry jsme hráli a jak to dříve vypadalo na našem táboře.
-                            </blockquote>
+    <div class="single_page_content fix">
+        <h1>Táborová historie</h1>
+        <blockquote>
+            V této sekci bychom rádi zavzpomínali na předešlé tábory, na hry, které se hrály, na lidi kteří s námi
+            jezdili. Pro ty, kdo s námi na tábory jezdili to bude příležitost, jak si připomenout chvíle na táboře, pro
+            vás ostatníto je možnost podívat se, co za hry jsme hráli a jak to dříve vypadalo na našem táboře.
+        </blockquote>
 
-            {foreach $terms as $term}
-                <h2>{$term->year} - {$term->title}</h2>
-                <p>{$term->text}</p>
-            {/foreach}
+        {foreach $terms as $term}
+            <h2>{$term->year} - {$term->title}</h2>
+            <p>{$term->text|noescape}</p>
+        {/foreach}
 
-						</div>
-</div>
+    </div>
+    </div>
 {/block}
 
 {block scripts}

@@ -2,11 +2,12 @@
 
 namespace FrontModule;
 
+use App\FrontModule\Presenters\ModuleBasePresenter;
 use Nette;
 use App\Model;
 
 
-class HomepagePresenter extends \Nette\Application\UI\Presenter
+class HomepagePresenter extends ModuleBasePresenter
 {
 
     /**

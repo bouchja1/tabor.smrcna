@@ -1,30 +1,22 @@
 {block content}
-            <div class="fix single_content_wrapper">
-
-            {foreach $news as $new}
-                <div class="fix single_content floatleft">
-                     <img src="images/home_featured.png" alt=""/>
-                     <div class="fix single_content_info">
-                       <h1>{$new->title}</h1>
-                       <p class="author">By Admin In Photography,Wine,Food</p>
-                       <p>{$new->text}</p>
-                       <div class="fix post-meta">
-                          <p>{$new->datetime}</p>
-                       </div>
-                    </div>
-                </div>
-            {/foreach}
-
-            </div>
-            <div class="pagination fix">
-               <a href="">1</a>
-               <a href="">1</a>
-               <a href="">1</a>
-               <a href="">1</a>
-               <a href="">1</a>
-               <a href="">1</a>
-            </div>
-         </div>
+    <div class="single_page_content fix">
+        {foreach $news as $new}
+            <h1>{$new->title}</h1>
+            <blockquote>
+                {$new->datetime}
+            </blockquote>
+            <p>{$new->text|noescape}</p>
+        {/foreach}
+    </div>
+    <div class="pagination fix">
+        <a href="">1</a>
+        <a href="">1</a>
+        <a href="">1</a>
+        <a href="">1</a>
+        <a href="">1</a>
+        <a href="">1</a>
+    </div>
+    </div>
 {/block}
 {block scripts}
 {/block}

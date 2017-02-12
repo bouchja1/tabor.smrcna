@@ -1,0 +1,25 @@
+{block sidebar}
+    neco
+{/block}
+
+{block content}
+    <h1>Novinky</h1>
+
+    {control newFormComponent}
+
+    <table class="table table-bordered">
+
+        {foreach $news as $new}
+            <tr>
+                <td>{$new->datetime}</td>
+                <td>{$new->text}</td>
+                <td><img src="{$new->image}" alt=""/></td>
+                <td><a href="{plink :Admin:News:edit $new->id}" title="Upravit">Upravit</a></td>
+            </tr>
+        {/foreach}
+    </table>
+{/block}
+{block scripts}
+{/block}
+{block head}
+{/block}

@@ -1,16 +1,24 @@
 {block content}
-						<div class="single_page_content fix">
-							<h1>About Us</h1>
-							<img src="images/single_feature_img.png" class="single_feature_img" alt=""/>
-							<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Cras mattis consectetur purus sit amet fermentum. Nullam quis risus eget urna mollis ornare vel eu leo. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum.</p>
-							<br/><blockquote>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas faucibus mollis interdum.</blockquote>
-							<h2>Nibh Pharetra Venenatis Magna</h2>
-							<img src="images/related_feature_img.png" class="floatleft" style="margin-right:10px;"/>
-							<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Cras mattis consectetur purus sit amet fermentum. Nullam quis risus eget urna mollis ornare vel eu leo. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum.
-							Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas faucibus mollis interdum.</p>
+    <div class="single_page_content fix">
+        <h1>Tábor a okolí</h1>
+        <blockquote>
+            Zde naleznete informace o táboře, o vybavení základny a o okolních zajímavostech.
+        </blockquote>
+        <h2>Mapa tábora</h2>
+        <div class="google_map">
+            <div id="googleMap"></div>
+            <div class="contact_info">
+                <p>Tábor se nachází v krásném prostředí Posázaví mezi loukami a lesy přímo vedle řeky. Děti zde jsou ubytované v chatičkách (mladší) nebo ve stanech s podsadou. Děti mohou používat nově zbudované umývárny se sprchami, k dispozici jsou suché toalety. Na základně je velká jídelna, která zároveň slouží jako klubovna. Pořádáme tu taky diskotéky pro děti. V areálu je písčité hřiště, kde děti mohou hrát různé sportovní hry, jako např. basketbal, nohejbal nebo volejbal. V prostoru tábora taky hrajeme fotbal a další hry. Také se zde nalézá zděná budova, kde je zdravotník, marodka, sklad sportovního náčiní a organizační místnost.</p>
+            </div>
+        </div>
+        <h2>Okolí tábora</h2>
+        <img src="../images/related_feature_img.png" class="floatleft" style="margin-right:10px;"/>
+        <p>
+            Tábor leží v údolí řeky Sázavy, v kraji zvaném Posázaví. Blízko tábora je les, kde se nachází tzv. Pěticestí, časté dějiště táborových her. Tři kilometry od tábora je známý kemp Stvořidla. Nedaleko tábora leží obec Světlá nad Sázavou, odkud také jezdí vláček do Smrčné, trampy přezdívaný sázavský Pacifik. Asi 10 km od tábora je i známá Lipnice, kde je možno navštívit hrad a zajít do Švejkovy hospody. V blízkosti tábora jsou i dva krásné kopce Melechov (708) a Žebrákův kopec (601). Některá z těchto míst budou určitě cíle našich výletů.
+        </p>
 
-						</div>
-</div>
+    </div>
+    </div>
 
 {/block}
 
@@ -22,5 +30,23 @@
 
 
 {block head}
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB3JqiwvZtQ_sViJFX8W9-rJyu6j8YyAYk&sensor=false"></script>
 
+    <script>
+        function initialize()
+        {
+            var smrcna = { lat: 49.6577411, lng: 15.3567047 };
+            var map = new google.maps.Map(document.getElementById('googleMap'), {
+                zoom: 17,
+                center: smrcna,
+                mapTypeId: 'satellite'
+            });
+            var marker = new google.maps.Marker({
+                position: smrcna,
+                map: map
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 {/block}

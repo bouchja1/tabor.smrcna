@@ -9,5 +9,5 @@ interface IContactFormComponentFactory {
     /**
      * @return \FrontModule\Components\ContactFormComponent
      */
-    public function create();
+    public function create($mailsModel);
 }

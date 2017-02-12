@@ -2,3 +2,17 @@
 
 		contactFormComponentFactory:
 			implement: \FrontModule\Components\IContactFormComponentFactory
+			setup:
+			    - setMailer(@nette.mailer)
+
+		newComponentFactory:
+			implement: \FrontModule\Components\INewComponentFactory
+
+		historyComponentFactory:
+			implement: \FrontModule\Components\IHistoryComponentFactory
+
+		warningComponentFactory:
+			implement: \FrontModule\Components\IWarningComponentFactory
+
+		signComponentFactory:
+			implement: \AdminModule\Components\ISignComponentFactory

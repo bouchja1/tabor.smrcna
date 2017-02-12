@@ -4,9 +4,9 @@ namespace FrontModule;
 
 use Nette;
 use App\Model;
+use App\FrontModule\Presenters\ModuleBasePresenter;
 
-
-class CampPresenter extends \Nette\Application\UI\Presenter
+class CampPresenter extends ModuleBasePresenter
 {
 
 	public function renderDefault()

@@ -5,8 +5,24 @@
 		newsModel:
 			class: \Models\NewsModel
 
+		securityActionRepository:
+			class: \Models\Repositories\MySql\SecurityActionRepository
+
+		securityActionModel:
+			class: \Models\SecurityActionModel
+
 		historyRepository:
 			class: \Models\Repositories\MySql\HistoryRepository
 
 		historyModel:
 			class: \Models\HistoryModel
+
+		mailsModel:
+			class: \Models\MailsModel
+
+		warningsModel:
+			class: \Models\WarningsModel
+
+		securityManager:
+			class: \Models\Security\SecurityManager
+			inject: yes

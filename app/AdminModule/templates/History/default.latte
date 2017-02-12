@@ -1,0 +1,25 @@
+{block sidebar}
+
+{/block}
+
+{block content}
+    <h1>Táborová historie</h1>
+
+    {control newHistoryFormComponent}
+
+    <table class="table table-bordered">
+
+        {foreach $terms as $term}
+            <tr>
+                <td>{$term->year}</td>
+                <td>{$term->title}</td>
+                <td>{$term->text}</td>
+                <td><a href="{plink :Admin:History:edit $term->id}" title="Upravit">Upravit</a></td>
+            </tr>
+        {/foreach}
+    </table>
+{/block}
+{block scripts}
+{/block}
+{block head}
+{/block}

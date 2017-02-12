@@ -23,6 +23,13 @@ includes:
 	- components.neon
 
 services:
-	- App\Forms\FormFactory
-	- App\Forms\SignFormFactory
-	router: App\RouterFactory::createRouter
+	authenticator:
+		class: Security\Authenticator(@Models\SecurityActionModel, @Models\Security\SecurityManager)
+
+	authorizator:
+		class: Security\Permission
+
+	routerFactory:
+		class: App\Router\RouterFactory
+
+	router: @routerFactory::createRouter()

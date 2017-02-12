@@ -4,13 +4,22 @@
 
 namespace FrontModule\Components;
 
+use App\Presenters\BasePresenter;
 use \Nette\Application\UI\Form,
     Components\BaseComponent;
+use Nette\Mail\Message;
 
 final class ContactFormComponent extends BaseComponent {
 
-    public function __construct() {
+    /**
+     * @var
+     */
+    public $mailer;
+    public $mailsModel;
+
+    public function __construct($mailsModel) {
         parent::__construct();
+        $this->mailsModel = $mailsModel;
     }
 
     /**
@@ -24,17 +33,29 @@ final class ContactFormComponent extends BaseComponent {
 
     public function processContactForm($form, $values) {
         try {
-            $this->presenter->setSearchText(trim($values['searchText']));
+            // Lets send an email.
+            $mail = new Message();
+            $mail->setFrom($values["email"])
+                ->addTo('jan.bouchner@gmail.com')
+                ->setSubject('Email z webu taborsmrcna.cz')
+                ->setBody($values["message"]);
+            $this->mailer->send($mail);
+            // We will store it to a database.
+            $this->mailsModel->saveMail($values);
             if ($this->presenter->isAjax()) {
-//                $this->presenter->redrawControl('films');
+                $this->presenter->redrawControl('films');
             } else {
-                //$this->redirect(":Front:Homepage:default", array("category" => $values['filmCategory'], "searchText" => $this->searchText));
                 $this->redirect(":Front:Homepage:default");
             }
         } catch (\Exception $e) {
-            $this->flashMessage('Odeslání selhalo.', \BasePresenter::FLASH_MESSAGE_ERROR);
+            $this->flashMessage('Odeslání mailu selhalo.', BasePresenter::FLASH_MESSAGE_ERROR);
             $form->addError($e->getMessage());
         }
     }
+
+    public function setMailer($mailer) {
+        $this->mailer = $mailer;
+    }
+
 
 }

@@ -15,11 +15,19 @@ final class NewsModel {
         $this->newsStore = $news;
     }
 
+    public function updateNew($values) {
+        $this->newsStore->update($values);
+    }
+
     public function findNewsById($id) {
         return $this->newsStore->findNewsById($id);
     }
 
     public function findAllNews() {
         return $this->newsStore->findAllNews();
+    }
+
+    public function saveNew($values) {
+        return $this->newsStore->insert($values);
     }
 }

@@ -4,9 +4,10 @@ namespace FrontModule;
 
 use Nette;
 use App\Model;
+use App\FrontModule\Presenters\ModuleBasePresenter;
 
 
-class AboutPresenter extends \Nette\Application\UI\Presenter
+class AboutPresenter extends ModuleBasePresenter
 {
 
     /**

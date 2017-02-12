@@ -3,9 +3,9 @@
 namespace FrontModule;
 
 use Nette;
+use App\FrontModule\Presenters\ModuleBasePresenter;
 
-
-class Error4xxPresenter extends \Nette\Application\UI\Presenter
+class Error4xxPresenter extends ModuleBasePresenter
 {
 
 	public function startup()

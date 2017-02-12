@@ -1,0 +1,21 @@
+{block sidebar}
+
+{/block}
+
+{block content}
+    <h1>Obdržené maily</h1>
+    <table class="table table-bordered">
+
+        {foreach $mails as $mail}
+            <tr>
+                <td>{$mail->email}</td>
+                <td>{$mail->name}</td>
+                <td>{$mail->message}</td>
+            </tr>
+        {/foreach}
+    </table>
+{/block}
+{block scripts}
+{/block}
+{block head}
+{/block}

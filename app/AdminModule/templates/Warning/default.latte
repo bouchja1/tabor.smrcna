@@ -1,0 +1,24 @@
+{block sidebar}
+    neco
+{/block}
+
+{block content}
+    <h1>Nepřehlédněte</h1>
+
+    {control warningsFormComponent}
+
+    <table class="table table-bordered">
+
+        {foreach $warnings as $warning}
+            <tr>
+                <td>{$warning->title}</td>
+                <td>{$warning->text}</td>
+                <td><a href="{plink :Admin:Warning:edit $warning->id}" title="Upravit">Upravit</a></td>
+            </tr>
+        {/foreach}
+    </table>
+{/block}
+{block scripts}
+{/block}
+{block head}
+{/block}

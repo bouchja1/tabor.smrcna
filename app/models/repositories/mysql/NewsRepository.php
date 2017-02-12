@@ -11,9 +11,7 @@ final class NewsRepository extends BaseRepository implements NewsRepositoryInter
     const TABLE_NAME = "news";
 
     public function findNewsById($id) {
-        return $this->newsQuery()
-                        ->where("[id] = %i", $id)
-                        ->fetch();
+        return $this->findById($id);
     }
 
     public function findAllNews() {
@@ -26,6 +24,7 @@ final class NewsRepository extends BaseRepository implements NewsRepositoryInter
                         ->select("[title]")
                         ->select("[datetime]")
                         ->select("[text]")
+                        ->select("[image]")
                         ->from(self::TABLE_NAME)
                         ->orderBy('id', 'DESC');
     }

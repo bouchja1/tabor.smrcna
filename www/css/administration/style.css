@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    font-family: san-serif, arial;
+    font-size: 14px;
+    line-height: 20px;
+    background: #fff;
+}
+
+a {
+    color: #000;
+    text-decoration: none
+}
+
+a:hover, a:focus, a:active {
+    text-decoration: none;
+    outline: none;
+}
+
+input[type=text], input[type=password], textarea {
+    border: 1px solid #ddd;
+    padding: 5px;
+    outline: none;
+}
+
+input[type=submit]
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    margin: 0 0 15px;
+    font-family: 'HelveticaNeue' !important;
+}
+
+img {
+    max-width: 100%;
+    height: auto
+}
+
+.wrap {
+    width: 960px;
+    display: block;
+    margin: 0 auto
+}
+
+.fix {
+    overflow: hidden
+}
+
+.header_area {
+    border-bottom: 2px solid #999999;
+    background-color: #918779;
+    min-height: 80px;
+}
+
+.header {
+}
+
+.logo {
+}
+
+.logo h1 {
+    color: #FFFDFA;
+    font-weight: bold;
+    font-size: 32px;
+    margin-top: 23px;
+    line-height: 33px;
+}
+
+.floatleft {
+    float: left
+}
+
+.floatright {
+    float: right
+}
+
+.manu {
+    margin-top: 20px;
+}
+
+.manu ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+.manu ul li {
+    float: left;
+}
+
+.manu ul li a {
+    color: #FFFDFA;
+    display: block;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
