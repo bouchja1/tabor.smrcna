@@ -20,7 +20,8 @@ final class HistoryRepository extends BaseRepository implements HistoryRepositor
                         ->select("[year]")
                         ->select("[title]")
                         ->select("[text]")
-                        ->from(self::TABLE_NAME);
+                        ->from(self::TABLE_NAME)
+                        ->orderBy('year', 'DESC');
     }
 
 }

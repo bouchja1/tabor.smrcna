@@ -212,11 +212,15 @@ img.displayed {
 	height: 40px;
 	width: 120px;cursor:pointer;}
 .submit:hover{background:#999;color:#fff;}
-blockquote{border-left: 5px solid #999999;
-	margin:15px 0 15px 25px;
+blockquote{
+	border-left: 5px solid #999999;
+	margin:30px 0 30px 25px;
 	padding-bottom: 5px;
 	padding-left: 10px;
-	padding-top: 5px;background:#DBEAF9}
+	padding-top: 5px;
+	padding-right: 15px;
+	background:#DBEAF9
+}
 
 
 .manu_area{margin: 20px 0;}

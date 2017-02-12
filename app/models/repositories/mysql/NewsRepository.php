@@ -26,7 +26,8 @@ final class NewsRepository extends BaseRepository implements NewsRepositoryInter
                         ->select("[title]")
                         ->select("[datetime]")
                         ->select("[text]")
-                        ->from(self::TABLE_NAME);
+                        ->from(self::TABLE_NAME)
+                        ->orderBy('id', 'DESC');
     }
 
 }

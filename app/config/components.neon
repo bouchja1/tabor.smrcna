@@ -1,6 +1,4 @@
 	services:
 
-		searchComponentFactory:
-			implement: \FrontModule\Components\ISearchComponentFactory
-			parameters: [day]
-			arguments: [%day%]
+		contactFormComponentFactory:
+			implement: \FrontModule\Components\IContactFormComponentFactory
