@@ -27,6 +27,10 @@ final class NewsModel {
         return $this->newsStore->findAllNews();
     }
 
+    public function findPaginatedNews($paginator) {
+        return $this->newsStore->findPaginatedNews($paginator);
+    }
+
     public function saveNew($values) {
         return $this->newsStore->insert($values);
     }

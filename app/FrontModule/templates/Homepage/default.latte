@@ -1,20 +1,24 @@
 {block content}
     <div class="single_page_content fix">
         {foreach $news as $new}
-            <h1>{$new->title}</h1>
-            <blockquote>
-                {$new->datetime}
-            </blockquote>
-            <p>{$new->text|noescape}</p>
+            <div class="camp_new">
+                <h1>{$new->title}</h1>
+                <blockquote>
+                    {$new->datetime|date:'j. n. Y'}
+                </blockquote>
+                <p>{$new->text|noescape}</p>
+            </div>
         {/foreach}
     </div>
     <div class="pagination fix">
-        <a href="">1</a>
-        <a href="">1</a>
-        <a href="">1</a>
-        <a href="">1</a>
-        <a href="">1</a>
-        <a href="">1</a>
+        <span><b>Starší novinky: </b></span>
+        {for $i = 1; $i <= $newsPagesCount; $i++}
+            {if $paginator->page == $i}
+                <a href="/" onclick="return false;" class="visited_page">{$i}</a>
+            {else}
+                <a href="{plink :Front:Homepage:default $i}">{$i}</a>
+            {/if }
+        {/for}
     </div>
     </div>
 {/block}

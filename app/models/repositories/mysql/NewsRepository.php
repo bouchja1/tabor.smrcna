@@ -18,6 +18,21 @@ final class NewsRepository extends BaseRepository implements NewsRepositoryInter
         return $this->newsQuery()->fetchAll();
     }
 
+    public function findPaginatedNews($paginator) {
+        $result = $this->connection
+            ->select("[id]")
+            ->select("[title]")
+            ->select("[datetime]")
+            ->select("[text]")
+            ->select("[image]")
+            ->from(self::TABLE_NAME)
+            ->orderBy('id', 'DESC')
+            ->limit($paginator->getLength())
+            ->offset($paginator->getOffset())
+            ->fetchAll();
+        return $result;
+    }
+
     private function newsQuery() {
         return $this->connection
                         ->select("[id]")

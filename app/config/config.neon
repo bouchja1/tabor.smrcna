@@ -33,3 +33,7 @@ services:
 		class: App\Router\RouterFactory
 
 	router: @routerFactory::createRouter()
+
+	paginator:
+	    class: Nette\Utils\Paginator
+	    inject: yes

@@ -9,4 +9,6 @@ interface NewsRepositoryInterface {
     public function findNewsById($id);
 
     public function findAllNews();
+
+    public function findPaginatedNews($paginator);
 }

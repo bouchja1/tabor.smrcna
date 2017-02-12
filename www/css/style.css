@@ -32,6 +32,12 @@ a:hover, a:focus, a:active {
     outline: none;
 }
 
+.camp_new {
+    border-top: 2px dotted #999999;
+    margin: 20px 0;
+    padding: 10px 0;
+}
+
 input[type=text], input[type=password], textarea {
     border: 1px solid #ddd;
     padding: 5px;
@@ -588,6 +594,10 @@ blockquote {
 .single_footer li {
 }
 
+.visited_page {
+    border: 1px solid black;
+}
+
 .single_footer li a {
     color: #898989;
 }
@@ -605,6 +615,11 @@ blockquote {
     display: inline-block;
     font-weight: bold;
     padding: 5px 10px;
+}
+
+.pagination a:active {
+    background: none repeat scroll 0 0 #000;
+    color: #fff;
 }
 
 #googleMap {
