@@ -1,0 +1,15 @@
+parameters:
+
+		database:
+			driver: mysql
+			host: "#<<!DB_HOST!>>#"
+			database: "#<<!DB_NAME!>>#"
+			user: "#<<!DB_USERNAME!>>#"
+			password: "#<<!DB_PASSWORD!>>#"
+
+dibi:
+	driver: %database.driver%
+	host: %database.host%
+	database: %database.database%
+	username: %database.user%
+	password: %database.password%

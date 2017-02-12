@@ -290,13 +290,13 @@ img.displayed {
 
 .single_popular h2 {
     color: #898989;
-    font-size: 14px;
-    margin-bottom: 0px;
+    font-size: 17px;
+    margin-bottom: 3px;
 }
 
 .single_popular p {
     color: #717171;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .search {

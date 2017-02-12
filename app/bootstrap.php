@@ -14,7 +14,16 @@ $configurator->createRobotLoader()
 	->register();
 
 $configurator->addConfig(__DIR__ . '/config/config.neon');
-$configurator->addConfig(__DIR__ . '/config/config.local.neon');
+
+if (apache_getenv("APPLICATION_ENV") === 'production') {
+	$configurator->addConfig(__DIR__ . '/config/config.production.neon');
+	$configurator->setDebugMode(true);
+	\Tracy\Debugger::$productionMode = false;
+} else {
+	$configurator->addConfig(__DIR__ . '/config/config.local.neon');
+	$configurator->setDebugMode(true);
+	\Tracy\Debugger::$productionMode = false;
+}
 
 $container = $configurator->createContainer();
 

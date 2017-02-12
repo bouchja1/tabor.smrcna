@@ -39,6 +39,53 @@ final class CurrentCampComponent extends BaseComponent {
                 $values["id"] = $this->editedCurrentCamp["id"];
                 $this->currentCampModel->updateCurrentYearInfo($values);
             } else {
+                /* @var $file FileUpload */
+                $file = $values["poster"];
+
+                try {
+                    if ($file->isOk() && $file->isImage()) {
+//                        $this->fileModel->begin();
+//                        // generate name
+//                        if (preg_match("/^(.*)\.(.*)$/", $file->getSanitizedName(), $nameParts)) {
+//                            $name = Strings::webalize($nameParts[1]) . "." . $nameParts[2];
+//                        } else {
+//                            $name = Strings::webalize($file->getSanitizedName());
+//                        }
+//
+//                        // if file already exists, add number to filename
+//                        while ($this->fileModel->existsByName($name)) {
+//                            preg_match('/(.*?)(?:(?:_([\d]+))?(\.[^.]+))?$/', $name, $matches);
+//                            $index = isset($matches[2]) ? ((int) $matches[2]) + 1 : 1;
+//                            $ext = isset($matches[3]) ? $matches[3] : '';
+//                            $name = $matches[1] . '_' . $index . $ext;
+//                        }
+//
+//                        $fileId = $this->fileManager->insert($name, FileModel::TYPE_IMAGE, $values);
+//                        $file->move($this->uploadDir . "/" . $name);
+//
+//                        // resize all images to prevent errors when image is used in article gallery
+//                        $image = $file->toImage();
+//                        $image->resize($this->thumbnail["max_width"], $this->thumbnail["max_height"], \Nette\Utils\Image::SHRINK_ONLY)->save($this->uploadDir . "/thumbnail/" . $name);
+//                        $image->resize($this->resized["max_width"], $this->resized["max_height"], \Nette\Utils\Image::SHRINK_ONLY)->save($this->uploadDir . "/resized/" . $name);
+//
+//                        $this->fileModel->commit();
+//                        $dataFunction = $this->dataFunction;
+//                        $responseString = '<option value="">--žádná--</option>';
+//                        foreach ($dataFunction("cs") AS $key => $value) {
+//                            $selected = ($key == $fileId) ? "selected" : "";
+//                            $responseString .= '<option ' . $selected . ' value="' . $key . '">' . $value . '</option>';
+//                        }
+//                        $this->presenter->sendResponse(new \Nette\Application\Responses\TextResponse('<div id="data">' . $responseString . '</div>'));
+                    } else {
+                        $form->addError("Soubor se nepovedlo nahrát. Je soubor obrázek ve správném formátu?");
+                    }
+                } catch (AbortException $ex) {
+                    throw $ex;
+                } catch (Exception $ex) {
+                    Debugger::log($ex);
+                    $form->addError("Došlo k neznámé chybě.");
+                }
+
                 $this->currentCampModel->saveCurrentYearInfo($values);
             }
             if ($this->presenter->isAjax()) {

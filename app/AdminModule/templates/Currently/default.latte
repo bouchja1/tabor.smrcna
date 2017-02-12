@@ -3,10 +3,12 @@
 {/block}
 
 {block content}
-    <h1>Vložení nového termínu</h1>
+    <h1>Tábory</h1>
 
+    <h2>Vložení informace o aktuálním termínu</h2>
     {control currentCampFormComponent}
 
+    <h2>Přehled všech termínů v databázi</h2>
     {if $current != null}
         <tr>
             <td>{$current->year}</td>

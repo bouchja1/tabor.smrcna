@@ -21,6 +21,9 @@ final class NewForm extends \Nette\Application\UI\Form {
             ->setDefaultValue($editedNew["text"])
             ->addRule(Form::MAX_LENGTH, 'Vaše zpráva je příliš dlouhá', 10000);
 
+        $this->addMultiUpload('files', 'Obrázky k novince')
+            ->setRequired(FALSE);
+
         $this->addSubmit('submit', 'Odeslat');
     }
 
