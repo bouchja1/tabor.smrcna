@@ -4,3 +4,9 @@
 
 		newsModel:
 			class: \Models\NewsModel
+
+		historyRepository:
+			class: \Models\Repositories\MySql\HistoryRepository
+
+		historyModel:
+			class: \Models\HistoryModel

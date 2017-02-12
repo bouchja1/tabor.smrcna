@@ -9,9 +9,19 @@ use App\Model;
 class AboutPresenter extends \Nette\Application\UI\Presenter
 {
 
+    /**
+     * @var \Models\HistoryModel
+     */
+    private $historyModel;
+
 	public function renderDefault()
 	{
-		$this->template->anyVariable = 'any value';
+        $terms = $this->historyModel->findAllTerms();
+        $this->template->terms = $terms;
 	}
+
+    public final function injectHistoryModel(\Models\HistoryModel $historyModel) {
+        $this->historyModel = $historyModel;
+    }
 
 }

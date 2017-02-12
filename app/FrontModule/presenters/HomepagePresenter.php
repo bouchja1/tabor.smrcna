@@ -9,9 +9,21 @@ use App\Model;
 class HomepagePresenter extends \Nette\Application\UI\Presenter
 {
 
+    /**
+     * @var \Models\NewsModel
+     */
+    private $newsModel;
+
 	public function renderDefault()
 	{
-		$this->template->anyVariable = 'any value';
+        $news = $this->newsModel->findAllNews();
+        $this->template->news = $news;
+        $this->template->newsCount = count($news);
 	}
+
+    public final function injectNewsModel(\Models\NewsModel $newsModel) {
+        $this->newsModel = $newsModel;
+    }
+
 
 }

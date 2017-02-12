@@ -1,83 +1,20 @@
 {block content}
             <div class="fix single_content_wrapper">
-               <div class="fix single_content floatleft">
-                  <img src="images/home_featured.png" alt=""/>
-                  <div class="fix single_content_info">
-                     <h1>Ullamcorper Mollis Pellentesque</h1>
-                     <p class="author">By Admin In Photography,Wine,Food</p>
-                     <p>Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Donec
-                        id elit non mi porta gravida at eget metus. Nullam id dolor id ultricies .
-                     </p>
-                     <div class="fix post-meta">
-                        <p>26 Sep, 2012  |  24 Comments</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="fix single_content floatleft">
-                  <img src="images/home_featured.png" alt=""/>
-                  <div class="fix single_content_info">
-                     <h1>Ullamcorper Mollis Pellentesque</h1>
-                     <p class="author">By Admin In Photography,Wine,Food</p>
-                     <p>Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Donec
-                        id elit non mi porta gravida at eget metus. Nullam id dolor id ultricies .
-                     </p>
-                     <div class="fix post-meta">
-                        <p>26 Sep, 2012  |  24 Comments</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="fix single_content floatleft">
-                  <img src="images/home_featured.png" alt=""/>
-                  <div class="fix single_content_info">
-                     <h1>Ullamcorper Mollis Pellentesque</h1>
-                     <p class="author">By Admin In Photography,Wine,Food</p>
-                     <p>Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Donec
-                        id elit non mi porta gravida at eget metus. Nullam id dolor id ultricies .
-                     </p>
-                     <div class="fix post-meta">
-                        <p>26 Sep, 2012  |  24 Comments</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="fix single_content floatleft">
-                  <img src="images/home_featured.png" alt=""/>
-                  <div class="fix single_content_info">
-                     <h1>Ullamcorper Mollis Pellentesque</h1>
-                     <p class="author">By Admin In Photography,Wine,Food</p>
-                     <p>Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Donec
-                        id elit non mi porta gravida at eget metus. Nullam id dolor id ultricies .
-                     </p>
-                     <div class="fix post-meta">
-                        <p>26 Sep, 2012  |  24 Comments</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="fix single_content floatleft">
-                  <img src="images/home_featured.png" alt=""/>
-                  <div class="fix single_content_info">
-                     <h1>Ullamcorper Mollis Pellentesque</h1>
-                     <p class="author">By Admin In Photography,Wine,Food</p>
-                     <p>Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Donec
-                        id elit non mi porta gravida at eget metus. Nullam id dolor id ultricies .
-                     </p>
-                     <div class="fix post-meta">
-                        <p>26 Sep, 2012  |  24 Comments</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="fix single_content floatleft">
-                  <img src="images/home_featured.png" alt=""/>
-                  <div class="fix single_content_info">
-                     <h1>Ullamcorper Mollis Pellentesque</h1>
-                     <p class="author">By Admin In Photography,Wine,Food</p>
-                     <p>Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Donec
-                        id elit non mi porta gravida at eget metus. Nullam id dolor id ultricies .
-                     </p>
-                     <div class="fix post-meta">
-                        <p>26 Sep, 2012  |  24 Comments</p>
-                     </div>
-                  </div>
-               </div>
+
+            {foreach $news as $new}
+                <div class="fix single_content floatleft">
+                     <img src="images/home_featured.png" alt=""/>
+                     <div class="fix single_content_info">
+                       <h1>{$new->title}</h1>
+                       <p class="author">By Admin In Photography,Wine,Food</p>
+                       <p>{$new->text}</p>
+                       <div class="fix post-meta">
+                          <p>{$new->datetime}</p>
+                       </div>
+                    </div>
+                </div>
+            {/foreach}
+
             </div>
             <div class="pagination fix">
                <a href="">1</a>

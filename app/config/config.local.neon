@@ -1,9 +1,15 @@
 parameters:
 
+		database:
+			driver: mysql
+			host: "127.0.0.1"
+			database: "smrcna"
+			user: "root"
+			password: "root"
 
-database:
-	dsn: 'mysql:host=127.0.0.1;dbname=test'
-	user:
-	password:
-	options:
-		lazy: yes
+dibi:
+	driver: %database.driver%
+	host: %database.host%
+	database: %database.database%
+	username: %database.user%
+	password: %database.password%
