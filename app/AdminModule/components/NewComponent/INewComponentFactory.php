@@ -9,5 +9,5 @@ interface INewComponentFactory {
     /**
      * @return \FrontModule\Components\NewComponent
      */
-    public function create($newsModel, $editedNew);
+    public function create($newsModel, $newsPhotoModel, $editedNew);
 }

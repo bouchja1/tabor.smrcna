@@ -25,6 +25,9 @@ final class HistoryForm extends \Nette\Application\UI\Form {
             ->setDefaultValue($editedHistory["text"])
             ->addRule(Form::MAX_LENGTH, 'Vaše zpráva je příliš dlouhá', 10000);
 
+        $this->addMultiUpload('files', 'Obrázky k historii')
+            ->setRequired(FALSE);
+
         $this->addSubmit('submit', 'Odeslat');
     }
 

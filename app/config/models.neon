@@ -1,4 +1,7 @@
 	services:
+		baseModel:
+			class: \Models\BaseModel
+
 		newsRepository:
 			class: \Models\Repositories\MySql\NewsRepository
 
@@ -19,6 +22,12 @@
 
 		mailsModel:
 			class: \Models\MailsModel
+
+		newsPhotoModel:
+			class: \Models\NewsPhotoModel
+
+		historyPhotoModel:
+			class: \Models\HistoryPhotoModel
 
 		currentCampModel:
 			class: \Models\CurrentCampModel

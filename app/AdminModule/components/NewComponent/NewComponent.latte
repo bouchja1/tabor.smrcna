@@ -1,5 +1,11 @@
 <div class="contact_form">
     {form newForm class => "ajax contact_form"}
+
+        <!-- Jednoduché vykreslení chyb -->
+        <ul class="errors" n:if="$form->hasErrors()">
+            <li n:foreach="$form->errors as $error">{$error}</li>
+        </ul>
+
         <p>{input title class => "text"}</p>
         <p>{input text }</p>
         <p>{label files /}</p>{input files}

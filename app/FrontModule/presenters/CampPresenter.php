@@ -16,9 +16,9 @@ class CampPresenter extends ModuleBasePresenter
 
 	public function renderDefault()
 	{
-		$current = $this->currentCampModel->findAllCamps();
+		$current = $this->currentCampModel->findActiveCamp();
 		if (sizeof($current) > 0) {
-			$this->template->current = $current[0];
+			$this->template->current = $current;
 		} else {
 			$this->template->current = null;
 		}

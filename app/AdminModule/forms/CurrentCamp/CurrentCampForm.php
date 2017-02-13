@@ -12,8 +12,8 @@ final class CurrentCampForm extends \Nette\Application\UI\Form {
         parent::__construct();
 
         $this->addUpload("poster", "Obrázek plakátu")
-            ->addRule(Form::IMAGE, "Musí být obrázek")
-            ->addRule(Form::MAX_FILE_SIZE, "Maximální velikost souboru je 512 kB.", 512 * 1024);
+            ->setRequired(FALSE)
+            ->addRule(Form::MAX_FILE_SIZE, "Maximální velikost souboru je 10 MB.", 10240 * 1024);
 
         $this->addTextArea('text', 'Text pro aktuální termín:')
             ->setAttribute('placeholder', 'sem zadejte text pro aktuální termín')

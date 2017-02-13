@@ -10,6 +10,15 @@
         {foreach $terms as $term}
             <h2>{$term->year} - {$term->title}</h2>
             <p>{$term->text|noescape}</p>
+            {ifset $term->photos}
+                {var $pictures = $term->photos}
+                <div style="display: block; margin-left: auto; margin-right: auto;">
+                    {foreach $pictures as $photo}
+                        <a href="{$basePath}/images/gallery/history/{$photo->name}" data-lightbox="{$term->year}"><img
+                                    class="img-rounded" src="{$basePath}/images/gallery/history/thumbnail/{$photo->name}" style="width:195px;height:auto; margin: 2px"></a>
+                    {/foreach}
+                </div>
+            {/ifset}
         {/foreach}
 
     </div>

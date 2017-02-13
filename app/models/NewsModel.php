@@ -11,8 +11,24 @@ final class NewsModel {
     /** @var NewsRepositoryInterface */
     private $newsStore;
 
-    public function __construct(NewsRepositoryInterface $news) {
+    /** @var BaseModel */
+    private $baseModel;
+
+    public function __construct(NewsRepositoryInterface $news, BaseModel $baseModel) {
         $this->newsStore = $news;
+        $this->baseModel = $baseModel;
+    }
+
+    public function beginTransaction() {
+        return $this->baseModel->beginTransaction();
+    }
+
+    public function commitTransaction() {
+        return $this->baseModel->commitTransaction();
+    }
+
+    public function rollbackTransaction() {
+        return $this->baseModel->rollbackTransaction();
     }
 
     public function updateNew($values) {
@@ -32,6 +48,8 @@ final class NewsModel {
     }
 
     public function saveNew($values) {
-        return $this->newsStore->insert($values);
+        $this->newsStore->insert($values);
+        $newId = $this->newsStore->getDatabase()->insertId();
+        return $newId;
     }
 }

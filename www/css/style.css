@@ -24,7 +24,7 @@ body {
 
 a {
     color: #000;
-    text-decoration: none
+    text-decoration: underline;
 }
 
 a:hover, a:focus, a:active {
@@ -36,6 +36,21 @@ a:hover, a:focus, a:active {
     border-top: 2px dotted #999999;
     margin: 20px 0;
     padding: 10px 0;
+}
+
+img {
+    width: auto\9;
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+}
+
+.img-rounded {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
 }
 
 .camp_new img {
@@ -125,6 +140,11 @@ img.displayed {
     font-size: 32px;
     margin-top: 23px;
     line-height: 33px;
+}
+
+.logo h1 > a {
+    color: #f7f6f4;
+    text-decoration: none;
 }
 
 .menu-wrap {

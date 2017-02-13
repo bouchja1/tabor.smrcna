@@ -9,5 +9,5 @@ interface IHistoryComponentFactory {
     /**
      * @return \FrontModule\Components\HistoryComponent
      */
-    public function create($historyModel, $editedHistory);
+    public function create($historyModel, $historyPhotoModel, $editedHistory);
 }

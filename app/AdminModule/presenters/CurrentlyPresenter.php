@@ -25,7 +25,7 @@ class CurrentlyPresenter extends ModuleBasePresenter
 	{
         $current = $this->currentCampModel->findAllCamps();
         if (sizeof($current) > 0) {
-            $this->template->current = $current[0];
+            $this->template->current = $current;
         } else {
             $this->template->current = null;
         }
@@ -38,6 +38,11 @@ class CurrentlyPresenter extends ModuleBasePresenter
     public function renderEdit()
     {
         $this->template->currentToEdit = $this->editedCurrentCamp;
+    }
+
+    public function actionActivate($id) {
+        $this->currentCampModel->activateCurrentYearById($id);
+        $this->setView('default');
     }
 
     public final function injectCurrentCampModel(\Models\CurrentCampModel $currentCampModel) {

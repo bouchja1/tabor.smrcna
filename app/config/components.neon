@@ -7,15 +7,28 @@
 
 		newComponentFactory:
 			implement: \FrontModule\Components\INewComponentFactory
+			inject: yes
+			setup:
+				- setUploadDir(%uploader.uploadNewsDir%)
+				- setThumbnail(%uploader.thumbnail%)
+				- setResized(%uploader.resized%)
 
 		historyComponentFactory:
 			implement: \FrontModule\Components\IHistoryComponentFactory
+			inject: yes
+			setup:
+				- setUploadDir(%uploader.uploadHistoryDir%)
+				- setThumbnail(%uploader.thumbnail%)
+				- setResized(%uploader.resized%)
 
 		warningComponentFactory:
 			implement: \FrontModule\Components\IWarningComponentFactory
 
 		currentCampComponentFactory:
 			implement: \FrontModule\Components\ICurrentCampComponentFactory
+			inject: yes
+			setup:
+				- setUploadDir(%uploader.uploadPosterDir%)
 
 		signComponentFactory:
 			implement: \AdminModule\Components\ISignComponentFactory

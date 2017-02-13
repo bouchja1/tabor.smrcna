@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{$basePath}/font/font.css">
     <link href="{$basePath}/css/style.css" rel="stylesheet" media="screen">
     <link href="{$basePath}/css/responsive.css" rel="stylesheet" media="screen">
+    <link href="{$basePath}/lightbox/css/lightbox.css" rel="stylesheet">
 
     <!-- SlidesJS Optional: If you'd like to use this design -->
     <style>
@@ -192,7 +193,7 @@
 <div class="fix header_area">
     <div class="fix wrap header">
         <div class="logo floatleft">
-            <h1>Letní dětský tábor Smrčná</h1>
+            <h1><a href="{plink :Front:Homepage:default}" title="Zpět na úvodní stránku">Letní dětský tábor Smrčná</a></h1>
         </div>
         <div class="manu floatright">
             <ul id="nav-top">
@@ -327,7 +328,7 @@
     <div class="fix footer_area">
         <div class="wrap">
             <div class="fix copyright_text floatleft">
-                <p><a href="http://www.wpfreeware.com" rel="nofollow">WpFreeware</a> & <a href="http://www.janbouchner.cz" target="_blank">Honza</a></p>
+                <p>CSS by <a href="http://www.wpfreeware.com" rel="nofollow">WpFreeware</a></p>
             </div>
             <div class="fix copyright_text floatright">
                 <p>Stránky již navštívilo XY návštěvníků.</p>
@@ -335,7 +336,7 @@
         </div>
     </div>
 
-    {block scripts}
+    {include scripts}
         <script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
         <script src="{$basePath}/js/main.js"></script>
         <script type="text/javascript" src="{$basePath}/js/placeholder_support_IE.js"></script>
@@ -353,7 +354,6 @@
                 indent: '-'
             });
         </script>
-        <script src="http://code.jquery.com/jquery.js"></script>
-    {/block}
+        <script src="{$basePath}/lightbox/js/lightbox.js"></script>
 </body>
 </html>

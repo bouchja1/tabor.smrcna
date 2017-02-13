@@ -24,6 +24,48 @@ abstract class BaseRepository extends \Nette\Object
         }
     }
 
+    /**
+     * Similart to $dibi->begin($savepoint) with support for ignore $savepoint name when is not $isNestedTransaction
+     *
+     * @param string $savepoint Savepoint name for nested transactions
+     * @param bool $isNestedTransaction When transaction is nested or not => when $savepoint should be ignored or not
+     */
+    public function begin($savepoint = null, $isNestedTransaction = false) {
+        if ($isNestedTransaction) {
+            $this->getDatabase()->begin($savepoint);
+        } else {
+            $this->getDatabase()->begin();
+        }
+    }
+
+    /**
+     * Similart to $dibi->rollback($savepoint) with support for ignore $savepoint name when is not $isNestedTransaction
+     *
+     * @param string $savepoint Savepoint name for nested transactions
+     * @param bool $isNestedTransaction When transaction is nested or not => when $savepoint should be ignored or not
+     */
+    public function rollback($savepoint = null, $isNestedTransaction = false) {
+        if ($isNestedTransaction) {
+            $this->getDatabase()->rollback($savepoint);
+        } else {
+            $this->getDatabase()->rollback();
+        }
+    }
+
+    /**
+     * Similart to $dibi->commit($savepoint) with support for ignore $savepoint name when is not $isNestedTransaction
+     *
+     * @param string $savepoint Savepoint name for nested transactions
+     * @param bool $isNestedTransaction When transaction is nested or not => when $savepoint should be ignored or not
+     */
+    public function commit($savepoint = null, $isNestedTransaction = false) {
+        if ($isNestedTransaction) {
+            $this->getDatabase()->commit($savepoint);
+        } else {
+            $this->getDatabase()->commit();
+        }
+    }
+
     public function update($values)
     {
         $valuesArray = (array)$values;

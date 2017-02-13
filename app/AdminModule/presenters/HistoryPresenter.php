@@ -15,6 +15,11 @@ class HistoryPresenter extends ModuleBasePresenter
     private $historyModel;
 
     /**
+     * @var \Models\HistoryPhotoModel
+     */
+    private $historyPhotoModel;
+
+    /**
      * @var \FrontModule\Components\IHistoryComponentFactory
      */
     private $historyComponentFactory;
@@ -40,6 +45,10 @@ class HistoryPresenter extends ModuleBasePresenter
         $this->historyModel = $historyModel;
     }
 
+    public final function injectHistoryPhotoModel(\Models\HistoryPhotoModel $historyPhotoModel) {
+        $this->historyPhotoModel = $historyPhotoModel;
+    }
+
     public final function injectCreateHistoryComponentFactory(\FrontModule\Components\IHistoryComponentFactory $historyComponentFactory) {
         $this->historyComponentFactory = $historyComponentFactory;
     }
@@ -48,13 +57,13 @@ class HistoryPresenter extends ModuleBasePresenter
      * @return \FrontModule\Components\HistoryComponent
      */
     protected function createComponentNewHistoryFormComponent() {
-        return $this->historyComponentFactory->create($this->historyModel, null);
+        return $this->historyComponentFactory->create($this->historyModel, $this->historyPhotoModel, null);
     }
 
     /**
      * @return \FrontModule\Components\HistoryComponent
      */
     protected function createComponentEditHistoryFormComponent() {
-        return $this->historyComponentFactory->create($this->historyModel, $this->editedHistory);
+        return $this->historyComponentFactory->create($this->historyModel, $this->historyPhotoModel, $this->editedHistory);
     }
 }

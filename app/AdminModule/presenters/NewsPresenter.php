@@ -19,6 +19,11 @@ class NewsPresenter extends ModuleBasePresenter
      */
     private $newsModel;
 
+    /**
+     * @var \Models\NewsPhotoModel
+     */
+    private $newsPhotoModel;
+
     private $editedNew;
 
     public function renderDefault()
@@ -41,6 +46,10 @@ class NewsPresenter extends ModuleBasePresenter
         $this->newsModel = $newsModel;
     }
 
+    public final function injectNewsPhotoModel(\Models\NewsPhotoModel $newsPhotoModel) {
+        $this->newsPhotoModel = $newsPhotoModel;
+    }
+
     public final function injectCreateNewComponentFactory(\FrontModule\Components\INewComponentFactory $newComponentFactory) {
         $this->newComponentFactory = $newComponentFactory;
     }
@@ -49,14 +58,14 @@ class NewsPresenter extends ModuleBasePresenter
      * @return \FrontModule\Components\NewComponent
      */
     protected function createComponentNewFormComponent() {
-        return $this->newComponentFactory->create($this->newsModel, null);
+        return $this->newComponentFactory->create($this->newsModel, $this->newsPhotoModel, null);
     }
 
     /**
      * @return \FrontModule\Components\NewComponent
      */
     protected function createComponentEditFormComponent() {
-        return $this->newComponentFactory->create($this->newsModel, $this->editedNew);
+        return $this->newComponentFactory->create($this->newsModel, $this->newsPhotoModel, $this->editedNew);
     }
 
 }

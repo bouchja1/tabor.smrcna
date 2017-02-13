@@ -4,6 +4,13 @@
 #
 parameters:
 
+    	uploader:
+    		uploadNewsDir: %wwwDir%/images/gallery/news/
+    		uploadHistoryDir: %wwwDir%/images/gallery/history/
+    		uploadPosterDir: %wwwDir%/images/gallery/poster/
+    		thumbnail: {max_width: 300, max_height: 300}
+    		resized: {max_width: 600, max_height: 600}
+
 php:
 	date.timezone: Europe/Prague
 
@@ -21,6 +28,8 @@ extensions:
 includes:
 	- models.neon
 	- components.neon
+
+
 
 services:
 	authenticator:

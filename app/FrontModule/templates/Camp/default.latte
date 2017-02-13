@@ -10,7 +10,7 @@
         {if $current != null}
             <p>{$current->text|noescape}</p>
             <h2>Plakát tábora (stáhněte kliknutím)</h2>
-            <img src="{$current->poster}">
+            <a href="{$basePath}/images/gallery/poster/{$current->poster}" target="_blank"><img src="{$basePath}/images/gallery/poster/{$current->poster}" style="display: block; margin-left: auto; margin-right: auto;"></a>
         {else}
             <p style="margin-bottom: 15px">Informace o letošním táboře budou upřesněny co nejdříve.</p>
             <img src="{$basePath}/images/vena.jpg">
