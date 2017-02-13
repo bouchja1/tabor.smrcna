@@ -120,7 +120,7 @@ img.displayed {
 }
 
 .logo h1 {
-    color: #FFFDFA;
+    color: #f7f6f4;
     font-weight: bold;
     font-size: 32px;
     margin-top: 23px;
@@ -145,7 +145,7 @@ img.displayed {
 }
 
 .manu ul li a {
-    color: #FFFDFA;
+    color: #f7f6f4;
     display: block;
     padding: 10px 15px;
     text-transform: uppercase;
@@ -289,7 +289,7 @@ img.displayed {
 }
 
 .single_popular h2 {
-    color: #898989;
+    color: #424141;
     font-size: 17px;
     margin-bottom: 3px;
 }
@@ -317,8 +317,20 @@ img.displayed {
 }
 
 .copyright_text {
-    color: #FFFDFA;
-    font-size: 12px;
+    color: #f7f6f4;
+    font-size: 15px;
+}
+
+.copyright_text a {
+    color: #f7f6f4;
+    font-size: 15px;
+    text-decoration: underline;
+}
+
+.copyright_text a:hover {
+    color: #f7f6f4;
+    font-size: 15px;
+    text-decoration: none;
 }
 
 .social_area {
@@ -565,8 +577,8 @@ blockquote {
 }
 
 .footer_top_area {
-    padding: 20px 0px 5px;
-    background-color: #B3ADA3;
+    padding: 30px 0px 5px;
+    background-color: #b5b1a9;
 }
 
 .footer_top_container {
@@ -585,14 +597,33 @@ blockquote {
 
 .single_footer > h2 {
     border-bottom: 2px dotted #bababa;
-    color: #6b6b6b;
-    font-size: 17px;
+    color: #424141;
+    font-size: 22px;
     font-weight: bold;
     padding-bottom: 15px;
 }
 
+.single_footer > p {
+    font-size: 17px;
+    line-height: 1.5em;
+    color: #424141;
+}
+
+.single_footer a {
+    color: #424141;
+    text-decoration: underline;
+}
+
+.single_footer a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
 .single_footer .popular_post > h2 {
     padding-bottom: 15px;
+    color: #424141;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .single_footer ul {
