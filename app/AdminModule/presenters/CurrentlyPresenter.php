@@ -45,6 +45,11 @@ class CurrentlyPresenter extends ModuleBasePresenter
         $this->setView('default');
     }
 
+    public function actionRemove($id) {
+        $this->currentCampModel->removeCurrentYearById($id);
+        $this->setView('default');
+    }
+
     public final function injectCurrentCampModel(\Models\CurrentCampModel $currentCampModel) {
         $this->currentCampModel = $currentCampModel;
     }

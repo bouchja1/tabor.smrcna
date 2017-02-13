@@ -14,6 +14,16 @@ final class HistoryPhotoModel extends BaseRepository {
         return $this->getDatabase()->select("*")->from(static::TABLE_NAME)->where("history_year_id = %i", $id)->fetchAll();
     }
 
+    public function removePhotosByHistoryId($id) {
+        $res = $this->getDatabase()->query("DELETE FROM [" . static::TABLE_NAME . "] WHERE [history_year_id] = %i", $id);
+        return $res;
+    }
+
+    public function removePhotoById($id) {
+        $res = $this->getDatabase()->query("DELETE FROM [" . static::TABLE_NAME . "] WHERE [id] = %i", $id);
+        return $res;
+    }
+
     /**
      * Returns id if exists or false when not exists
      *

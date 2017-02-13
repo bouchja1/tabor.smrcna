@@ -7,6 +7,16 @@
 
     {control editFormComponent}
 
+    {ifset $newPhotos}
+        <div style="display: block; margin-left: auto; margin-right: auto;">
+            {foreach $newPhotos as $photo}
+                <a href="{$basePath}/images/gallery/news/{$photo->name}"><img
+                            class="img-rounded" src="{$basePath}/images/gallery/news/thumbnail/{$photo->name}" style="width:195px;height:auto; margin: 2px"></a>
+                <td><a href="{plink :Admin:News:removeNewPhoto $photo->id}" title="Smazat">Smazat fotku</a></td>
+            {/foreach}
+        </div>
+    {/ifset}
+
 {/block}
 {block scripts}
 {/block}

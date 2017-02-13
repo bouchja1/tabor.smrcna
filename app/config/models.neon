@@ -8,6 +8,12 @@
 		newsModel:
 			class: \Models\NewsModel
 
+		locationRepository:
+			class: \Models\Repositories\MySql\LocationRepository
+
+		locationModel:
+			class: \Models\LocationModel
+
 		securityActionRepository:
 			class: \Models\Repositories\MySql\SecurityActionRepository
 
@@ -25,6 +31,9 @@
 
 		newsPhotoModel:
 			class: \Models\NewsPhotoModel
+
+		locationPhotoModel:
+			class: \Models\LocationPhotoModel
 
 		historyPhotoModel:
 			class: \Models\HistoryPhotoModel

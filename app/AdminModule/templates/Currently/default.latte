@@ -16,6 +16,7 @@
                 <td>{$cur->year}</td>
                 <td>{$cur->text}</td>
                 <td><a href="{plink :Admin:Currently:edit $cur->id}" title="Upravit">Upravit</a></td>
+                <td><a href="{plink :Admin:Currently:remove $cur->id}" title="Smazat">Smazat</a></td>
                 <td><a href="{plink :Admin:Currently:activate $cur->id}" title="Aktivovat termín pro web">Aktivovat termín pro web</a></td>
             </tr>
         {/foreach}

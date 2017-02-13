@@ -15,6 +15,10 @@ final class HistoryRepository extends BaseRepository implements HistoryRepositor
         return $this->findById($id);
     }
 
+    public function deleteHistory($id) {
+        $res = $this->connection->query("DELETE FROM [" . self::TABLE_NAME . "] WHERE [id] = %i", $id);
+    }
+
     public function findAllTerms() {
         return $this->historyQuery()->fetchAll();
     }

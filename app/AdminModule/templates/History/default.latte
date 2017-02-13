@@ -17,6 +17,7 @@
                 <td>{$term->title}</td>
                 <td>{$term->text}</td>
                 <td><a href="{plink :Admin:History:edit $term->id}" title="Upravit">Upravit</a></td>
+                <td><a href="{plink :Admin:History:remove $term->id}" title="Smazat">Smazat</a></td>
             </tr>
         {/foreach}
     </table>

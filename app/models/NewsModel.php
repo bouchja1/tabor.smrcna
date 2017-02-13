@@ -6,7 +6,8 @@ namespace Models;
 
 use Models\Interfaces\NewsRepositoryInterface;
 
-final class NewsModel {
+final class NewsModel
+{
 
     /** @var NewsRepositoryInterface */
     private $newsStore;
@@ -14,40 +15,67 @@ final class NewsModel {
     /** @var BaseModel */
     private $baseModel;
 
-    public function __construct(NewsRepositoryInterface $news, BaseModel $baseModel) {
+    /** @var NewsPhotoModel */
+    private $newsPhotoModel;
+
+    public function __construct(NewsRepositoryInterface $news, BaseModel $baseModel, NewsPhotoModel $newsPhotoModel)
+    {
         $this->newsStore = $news;
         $this->baseModel = $baseModel;
+        $this->newsPhotoModel = $newsPhotoModel;
     }
 
-    public function beginTransaction() {
+    public function beginTransaction()
+    {
         return $this->baseModel->beginTransaction();
     }
 
-    public function commitTransaction() {
+    public function commitTransaction()
+    {
         return $this->baseModel->commitTransaction();
     }
 
-    public function rollbackTransaction() {
+    public function rollbackTransaction()
+    {
         return $this->baseModel->rollbackTransaction();
     }
 
-    public function updateNew($values) {
+    public function removeNewById($id)
+    {
+        try {
+            $this->newsPhotoModel->removePhotosByNewsId($id);
+            $this->newsStore->deleteNew($id);
+        } catch (\Exception $e) {
+        }
+    }
+
+    public function removeNewPhotoById($id)
+    {
+        $this->newsPhotoModel->removePhotoById($id);
+    }
+
+    public function updateNew($values)
+    {
         $this->newsStore->update($values);
     }
 
-    public function findNewsById($id) {
+    public function findNewsById($id)
+    {
         return $this->newsStore->findNewsById($id);
     }
 
-    public function findAllNews() {
+    public function findAllNews()
+    {
         return $this->newsStore->findAllNews();
     }
 
-    public function findPaginatedNews($paginator) {
+    public function findPaginatedNews($paginator)
+    {
         return $this->newsStore->findPaginatedNews($paginator);
     }
 
-    public function saveNew($values) {
+    public function saveNew($values)
+    {
         $this->newsStore->insert($values);
         $newId = $this->newsStore->getDatabase()->insertId();
         return $newId;

@@ -35,7 +35,7 @@ final class RouterFactory
     private function createAdminModuleRouter() {
         $this->router[] = $adminRouter = new RouteList('Admin');
 
-        $adminRouter[] = new Route('administration/<presenter>[/<action=default>][/<id>]', array(
+        $adminRouter[] = new Route('admin/<presenter>[/<action=default>][/<id>]', array(
             'presenter' => 'Homepage',
             'action' => 'default',
             'id' => NULL,

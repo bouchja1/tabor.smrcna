@@ -26,6 +26,10 @@ final class CurrentCampModel extends BaseRepository {
         return $this->begin();
     }
 
+    public function removeCurrentYearById($id) {
+        return $this->delete($id);
+    }
+
     public function commitTransaction() {
         return $this->commit();
     }

@@ -11,4 +11,6 @@ interface NewsRepositoryInterface {
     public function findAllNews();
 
     public function findPaginatedNews($paginator);
+
+    public function deleteNew($id);
 }

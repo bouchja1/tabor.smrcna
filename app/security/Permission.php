@@ -30,6 +30,7 @@ final class Permission extends \Nette\Security\Permission {
         $this->addResource('AdminModule\WarningPresenter');
         $this->addResource('AdminModule\HistoryPresenter');
         $this->addResource('AdminModule\MailsPresenter');
+        $this->addResource('AdminModule\LocationPresenter');
 
         // resources FrontModule
         $this->addResource('FrontModule\AboutPresenter');
@@ -51,6 +52,7 @@ final class Permission extends \Nette\Security\Permission {
         $this->allow(self::ROLE_ADMIN, 'AdminModule\WarningPresenter', Permission::ALL);
         $this->allow(self::ROLE_ADMIN, 'AdminModule\HistoryPresenter', Permission::ALL);
         $this->allow(self::ROLE_ADMIN, 'AdminModule\MailsPresenter', Permission::ALL);
+        $this->allow(self::ROLE_ADMIN, 'AdminModule\LocationPresenter', Permission::ALL);
 
         // privileges FrontModule
         $this->allow(self::GUEST, 'FrontModule\AboutPresenter', Permission::ALL);

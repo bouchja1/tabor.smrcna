@@ -1,0 +1,39 @@
+{block sidebar}
+{/block}
+
+{block content}
+    <h1>Lokalita</h1>
+
+    <h2>Úpravy informací o lokalitě</h2>
+
+    {control newLocationFormComponent}
+
+    <h2 style="margin-top: 20px">O táboře - fotky</h2>
+    {ifset $camp->photos_about}
+        {var $pictures = $camp->photos_about}
+        <div style="display: block; margin-left: auto; margin-right: auto; margin-top: 20px">
+            {foreach $pictures as $photo}
+                <a href="{$basePath}/images/gallery/location/{$photo->name}" data-lightbox="{$camp->id}">
+                    <img class="img-rounded" src="{$basePath}/images/gallery/location/thumbnail/{$photo->name}" style="width:195px;height:auto; margin: 2px">
+                </a>
+                <td><a href="{plink :Admin:Location:removePhoto $photo->id}" title="Smazat">Smazat fotku</a></td>
+            {/foreach}
+        </div>
+    {/ifset}
+    <h2 style="margin-top: 20px">Okolí tábora - fotky</h2>
+    {ifset $camp->photos_surroundings}
+        {var $pictures = $camp->photos_surroundings}
+        <div style="display: block; margin-left: auto; margin-right: auto; margin-top: 20px">
+            {foreach $pictures as $photo}
+                <a href="{$basePath}/images/gallery/location/{$photo->name}" data-lightbox="{$camp->id}">
+                    <img class="img-rounded" src="{$basePath}/images/gallery/location/thumbnail/{$photo->name}" style="width:195px;height:auto; margin: 2px">
+                </a>
+                <td><a href="{plink :Admin:Location:removePhoto $photo->id}" title="Smazat">Smazat fotku</a></td>
+            {/foreach}
+        </div>
+    {/ifset}
+{/block}
+{block scripts}
+{/block}
+{block head}
+{/block}

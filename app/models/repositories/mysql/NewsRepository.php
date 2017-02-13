@@ -18,6 +18,10 @@ final class NewsRepository extends BaseRepository implements NewsRepositoryInter
         return $this->newsQuery()->fetchAll();
     }
 
+    public function deleteNew($id) {
+        $res = $this->connection->query("DELETE FROM [" . self::TABLE_NAME . "] WHERE [id] = %i", $id);
+    }
+
     public function findPaginatedNews($paginator) {
         $result = $this->connection
             ->select("[id]")

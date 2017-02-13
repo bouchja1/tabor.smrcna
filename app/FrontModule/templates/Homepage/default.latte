@@ -7,6 +7,14 @@
                     {$new->datetime|date:'j. n. Y'}
                 </blockquote>
                 <p>{$new->text|noescape}</p>
+                {ifset $new->photos}
+                    {var $pictures = $new->photos}
+                        {foreach $pictures as $photo}
+                            <a href="{$basePath}/images/gallery/news/{$photo->name}"><img
+                                        class="img-rounded" src="{$basePath}/images/gallery/news/thumbnail/{$photo->name}" ></a>
+                            <br>
+                        {/foreach}
+                {/ifset}
             </div>
         {/foreach}
     </div>

@@ -34,11 +34,23 @@ class HistoryPresenter extends ModuleBasePresenter
 
     public function actionEdit($id) {
         $this->editedHistory = $this->historyModel->findHistoryTermById($id);
+
+    }
+
+    public function actionRemove($id) {
+        $this->historyModel->removeHistoryById($id);
+        $this->setView('default');
+    }
+
+    public function actionRemoveTermPhoto($id) {
+        $this->historyModel->removeHistoryPhotoById($id);
+        $this->setView('default');
     }
 
     public function renderEdit()
     {
         $this->template->term = $this->editedHistory;
+        $this->template->termPhotos = $this->historyPhotoModel->findPhotosByTermId($this->editedHistory["id"]);
     }
 
     public final function injectHistoryModel(\Models\HistoryModel $historyModel) {

@@ -8,6 +8,7 @@ parameters:
     		uploadNewsDir: %wwwDir%/images/gallery/news/
     		uploadHistoryDir: %wwwDir%/images/gallery/history/
     		uploadPosterDir: %wwwDir%/images/gallery/poster/
+    		uploadLocationDir: %wwwDir%/images/gallery/location/
     		thumbnail: {max_width: 300, max_height: 300}
     		resized: {max_width: 600, max_height: 600}
 

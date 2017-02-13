@@ -16,6 +16,11 @@ class HomepagePresenter extends ModuleBasePresenter
     private $newsModel;
 
     /**
+     * @var \Models\NewsPhotoModel
+     */
+    private $newsPhotoModel;
+
+    /**
      * @inject
      * @var Nette\Utils\Paginator
      */
@@ -28,6 +33,10 @@ class HomepagePresenter extends ModuleBasePresenter
         $this->paginator->setItemsPerPage(5); // počet položek na stránce
         $this->paginator->setPage($pageNumber); // číslo aktuální stránky, číslováno od 1
         $news = $this->newsModel->findPaginatedNews($this->paginator);
+        foreach ($news as &$new) {
+            $newPhotos = $this->newsPhotoModel->findPhotosBynewId($new["id"]);
+            $new["photos"] = $newPhotos;
+        }
         $this->template->news = $news;
         $this->template->newsCount = count($allNews);
         $this->template->newsPagesCount = ceil(count($allNews) / 5);
@@ -43,5 +52,8 @@ class HomepagePresenter extends ModuleBasePresenter
         $this->newsModel = $newsModel;
     }
 
+    public final function injectNewsPhotoModel(\Models\NewsPhotoModel $newsPhotoModel) {
+        $this->newsPhotoModel = $newsPhotoModel;
+    }
 
 }

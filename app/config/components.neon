@@ -21,6 +21,13 @@
 				- setThumbnail(%uploader.thumbnail%)
 				- setResized(%uploader.resized%)
 
+		locationComponentFactory:
+			implement: \FrontModule\Components\ILocationComponentFactory
+			inject: yes
+			setup:
+				- setUploadDir(%uploader.uploadLocationDir%)
+				- setThumbnail(%uploader.thumbnail%)
+
 		warningComponentFactory:
 			implement: \FrontModule\Components\IWarningComponentFactory
 

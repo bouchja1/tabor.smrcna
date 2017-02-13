@@ -39,6 +39,16 @@ abstract class BaseRepository extends \Nette\Object
     }
 
     /**
+     * Delete row $id or ignore
+     *
+     * @param type $id
+     * @return type
+     */
+    public function delete($id) {
+        return $this->getDatabase()->query("DELETE FROM [" . static::TABLE_NAME . "] WHERE [id] = %i", $id);
+    }
+
+    /**
      * Similart to $dibi->rollback($savepoint) with support for ignore $savepoint name when is not $isNestedTransaction
      *
      * @param string $savepoint Savepoint name for nested transactions

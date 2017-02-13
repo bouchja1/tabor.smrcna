@@ -7,15 +7,31 @@
         <h2>Mapa tábora</h2>
         <div class="google_map">
             <div id="googleMap"></div>
-            <div class="contact_info">
-                <p>Tábor se nachází v krásném prostředí Posázaví mezi loukami a lesy přímo vedle řeky. Děti zde jsou ubytované v chatičkách (mladší) nebo ve stanech s podsadou. Děti mohou používat nově zbudované umývárny se sprchami, k dispozici jsou suché toalety. Na základně je velká jídelna, která zároveň slouží jako klubovna. Pořádáme tu taky diskotéky pro děti. V areálu je písčité hřiště, kde děti mohou hrát různé sportovní hry, jako např. basketbal, nohejbal nebo volejbal. V prostoru tábora taky hrajeme fotbal a další hry. Také se zde nalézá zděná budova, kde je zdravotník, marodka, sklad sportovního náčiní a organizační místnost.</p>
-            </div>
         </div>
-        <h2>Okolí tábora</h2>
-        <img src="../images/related_feature_img.png" class="floatleft" style="margin-right:10px;"/>
-        <p>
-            Tábor leží v údolí řeky Sázavy, v kraji zvaném Posázaví. Blízko tábora je les, kde se nachází tzv. Pěticestí, časté dějiště táborových her. Tři kilometry od tábora je známý kemp Stvořidla. Nedaleko tábora leží obec Světlá nad Sázavou, odkud také jezdí vláček do Smrčné, trampy přezdívaný sázavský Pacifik. Asi 10 km od tábora je i známá Lipnice, kde je možno navštívit hrad a zajít do Švejkovy hospody. V blízkosti tábora jsou i dva krásné kopce Melechov (708) a Žebrákův kopec (601). Některá z těchto míst budou určitě cíle našich výletů.
-        </p>
+        <h2 style="margin-top: 20px">O táboře</h2>
+        <p>{ifset $camp->text_about}{$camp->text_about|noescape}{/ifset}</p>
+        {ifset $camp->photos_about}
+            {var $pictures = $camp->photos_about}
+            <div style="display: block; margin-left: auto; margin-right: auto; margin-top: 20px">
+                {foreach $pictures as $photo}
+                    <a href="{$basePath}/images/gallery/location/{$photo->name}" data-lightbox="{$camp->id}">
+                        <img class="img-rounded" src="{$basePath}/images/gallery/location/thumbnail/{$photo->name}" style="width:195px;height:auto; margin: 2px">
+                    </a>
+                {/foreach}
+            </div>
+        {/ifset}
+        <h2 style="margin-top: 20px">Okolí tábora</h2>
+        <p>{ifset $camp->text_surroundings}{$camp->text_surroundings|noescape}{/ifset}</p>
+        {ifset $camp->photos_surroundings}
+            {var $pictures = $camp->photos_surroundings}
+            <div style="display: block; margin-left: auto; margin-right: auto; margin-top: 20px">
+                {foreach $pictures as $photo}
+                    <a href="{$basePath}/images/gallery/location/{$photo->name}" data-lightbox="{$camp->id}">
+                        <img class="img-rounded" src="{$basePath}/images/gallery/location/thumbnail/{$photo->name}" style="width:195px;height:auto; margin: 2px">
+                    </a>
+                {/foreach}
+            </div>
+        {/ifset}
 
     </div>
     </div>
@@ -33,8 +49,7 @@
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB3JqiwvZtQ_sViJFX8W9-rJyu6j8YyAYk&sensor=false"></script>
 
     <script>
-        function initialize()
-        {
+        function initialize() {
             var smrcna = { lat: 49.6577411, lng: 15.3567047 };
             var map = new google.maps.Map(document.getElementById('googleMap'), {
                 zoom: 17,

@@ -1,0 +1,15 @@
+<div class="contact_form">
+    {form locationForm class => "ajax contact_form"}
+
+        <!-- Jednoduché vykreslení chyb -->
+        <ul class="errors" n:if="$form->hasErrors()">
+            <li n:foreach="$form->errors as $error">{$error}</li>
+        </ul>
+
+        <p>{input text_about }</p>
+        <p>{label files_about /}</p>{input files_about}
+        <p>{input text_surroundings }</p>
+        <p>{label files_surroundings /}</p>{input files_surroundings}
+        <p>{input submit class => "submit" }</p>
+    {/form}
+</div>

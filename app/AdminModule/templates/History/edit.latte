@@ -7,6 +7,16 @@
 
     {control editHistoryFormComponent}
 
+    {ifset $termPhotos}
+        <div style="display: block; margin-left: auto; margin-right: auto;">
+            {foreach $termPhotos as $photo}
+                <a href="{$basePath}/images/gallery/history/{$photo->name}" data-lightbox="{$term->year}"><img
+                            class="img-rounded" src="{$basePath}/images/gallery/history/thumbnail/{$photo->name}" style="width:195px;height:auto; margin: 2px"></a>
+                <td><a href="{plink :Admin:History:removeTermPhoto $photo->id}" title="Smazat">Smazat fotku</a></td>
+            {/foreach}
+        </div>
+    {/ifset}
+
 {/block}
 {block scripts}
 {/block}

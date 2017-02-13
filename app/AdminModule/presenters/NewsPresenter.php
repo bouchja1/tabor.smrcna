@@ -37,9 +37,20 @@ class NewsPresenter extends ModuleBasePresenter
         $this->editedNew = $this->newsModel->findNewsById($id);
     }
 
+    public function actionRemove($id) {
+        $this->newsModel->removeNewById($id);
+        $this->setView('default');
+    }
+
+    public function actionRemoveNewPhoto($id) {
+        $this->newsModel->removeNewPhotoById($id);
+        $this->setView('default');
+    }
+
     public function renderEdit()
     {
         $this->template->new = $this->editedNew;
+        $this->template->newPhotos = $this->newsPhotoModel->findPhotosByNewId($this->editedNew["id"]);
     }
 
     public final function injectNewsModel(\Models\NewsModel $newsModel) {
