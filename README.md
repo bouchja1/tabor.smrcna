@@ -13,6 +13,6 @@ http://taborsmrcna.cz/
 * PHP >= 5.4
 * Apache2 or Nginx
 * composer
-* script to create and fill DB with initial values
-* a knowledge how to calculate a password
+* [script](https://github.com/bouchja1/tabor.smrcna/blob/master/camp_db.sql) to create and fill DB with initial values
+* a knowledge how to calculate a password which is stored to DB: base64_encode(YOUR_PASSWORD + YOUR_SALT_FROM_DB)
 
