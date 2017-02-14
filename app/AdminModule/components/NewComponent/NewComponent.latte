@@ -8,7 +8,10 @@
 
         <p>{label title /}{input title class => "text"}</p>
         <p>{input text }</p>
-        <p>{label files /}</p>{input files}
+        <p>{label files /} <b>(nepovinné - lze dodatečně přidat v editaci příspěvku)</b></p>{input files}
+        <p>{label youtube_video /} <b>(nepovinné - lze dodatečně přidat v editaci příspěvku)</b></p>
+        <p><b>Upozornění: </b> Je nutné vkládat pouze kód videa. Tzn. když si z youtube zkopírujete odkaz na video s HTTP adresou https://www.youtube.com/watch?v=3NrhKM3G8Mg, sem do tohoto políčka vložíte pouze 3NrhKM3G8Mg (aneb "to co je za tím ?v=). Když chcete videa od novinky smazat, vymažete tady ten kód a odešlete.</p>
+        {input youtube_video class => "text"}
         <p>{input submit class => "btn btn-lg btn-default" }</p>
     {/form}
 </div>

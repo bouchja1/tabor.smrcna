@@ -5,7 +5,7 @@
             <li n:foreach="$form->errors as $error">{$error}</li>
         </ul>
 
-        <p>{label poster /}</p> {input poster}
+        <p>{label poster /} <b>(nepovinné - lze nahrát dodatečně)</b></p> {input poster}
         <p>{label text /}{input text }</p>
         <p>{input submit class => "btn btn-lg btn-default" }</p>
     {/form}

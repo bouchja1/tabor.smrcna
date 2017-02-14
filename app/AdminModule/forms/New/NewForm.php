@@ -25,6 +25,11 @@ final class NewForm extends \Nette\Application\UI\Form {
         $this->addMultiUpload('files', 'Obrázky k novince')
             ->setRequired(FALSE);
 
+        $this->addText('youtube_video', 'HTTP odkaz na YouTube video:')
+            ->setAttribute('placeholder', 'odkaz na video')
+            ->setDefaultValue($editedNew["youtube_video"])
+            ->setRequired(FALSE);
+
         $this->addSubmit('submit', 'Odeslat');
     }
 

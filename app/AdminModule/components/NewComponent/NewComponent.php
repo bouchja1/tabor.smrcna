@@ -65,6 +65,9 @@ final class NewComponent extends BaseComponent {
                 for ($i = 0; $i < $filesCount; $i++) {
                     $this->uploadPicture($file[$i], $form, $values["id"]);
                 }
+                if ($values["youtube_video"] == "") {
+                    $values["youtube_video"] = NULL;
+                }
                 $this->newsModel->updateNew($values);
                 $this->newsModel->commitTransaction();
             } else {
@@ -74,6 +77,9 @@ final class NewComponent extends BaseComponent {
                 unset($values->files);
 
                 $this->newsModel->beginTransaction();
+                if ($values["youtube_video"] == "") {
+                    $values["youtube_video"] = NULL;
+                }
                 $newsId = $this->newsModel->saveNew($values);
                 $filesCount = sizeof($file);
 

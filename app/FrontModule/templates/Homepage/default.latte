@@ -15,6 +15,9 @@
                             <br>
                         {/foreach}
                 {/ifset}
+                {ifset $new->youtube_video}
+                    <iframe width="450" height="280" src="//www.youtube.com/embed/{$new->youtube_video}" frameborder="0" allowfullscreen=""></iframe>
+                {/ifset}
             </div>
         {/foreach}
     </div>

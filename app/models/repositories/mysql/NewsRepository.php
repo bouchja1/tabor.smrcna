@@ -28,7 +28,7 @@ final class NewsRepository extends BaseRepository implements NewsRepositoryInter
             ->select("[title]")
             ->select("[datetime]")
             ->select("[text]")
-            ->select("[image]")
+            ->select("[youtube_video]")
             ->from(self::TABLE_NAME)
             ->orderBy('id', 'DESC')
             ->limit($paginator->getLength())
@@ -43,7 +43,7 @@ final class NewsRepository extends BaseRepository implements NewsRepositoryInter
                         ->select("[title]")
                         ->select("[datetime]")
                         ->select("[text]")
-                        ->select("[image]")
+                        ->select("[youtube_video]")
                         ->from(self::TABLE_NAME)
                         ->orderBy('id', 'DESC');
     }
