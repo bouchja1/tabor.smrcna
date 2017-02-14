@@ -19,7 +19,6 @@ php:
 application:
 	errorPresenter: Error
 
-
 session:
 	expiration: 14 days
 
@@ -29,8 +28,6 @@ extensions:
 includes:
 	- models.neon
 	- components.neon
-
-
 
 services:
 	authenticator:

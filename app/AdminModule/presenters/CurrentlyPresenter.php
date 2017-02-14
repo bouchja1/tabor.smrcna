@@ -2,6 +2,8 @@
 
 namespace AdminModule;
 
+use App\Presenters\BasePresenter;
+use FrontModule\Components\CurrentCampComponent;
 use Nette;
 use App\Model;
 
@@ -62,13 +64,25 @@ class CurrentlyPresenter extends ModuleBasePresenter
      * @return \FrontModule\Components\CurrentCampComponent
      */
     protected function createComponentCurrentCampFormComponent() {
-        return $this->currentCampComponentFactory->create($this->currentCampModel, null);
+        $control = $this->currentCampComponentFactory->create($this->currentCampModel, null);
+        $control->onFormSave[] = function (CurrentCampComponent $control) {
+            $this->flashMessage('Informace byly uloženy.', BasePresenter::FLASH_MESSAGE_SUCCESS);
+            $this->redirect('this');
+        };
+
+        return $control;
     }
 
     /**
      * @return \FrontModule\Components\CurrentCampComponent
      */
     protected function createComponentEditCurrentCampFormComponent() {
-        return $this->currentCampComponentFactory->create($this->currentCampModel, $this->editedCurrentCamp);
+        $control = $this->currentCampComponentFactory->create($this->currentCampModel, $this->editedCurrentCamp);
+        $control->onFormSave[] = function (CurrentCampComponent $control) {
+            $this->flashMessage('Informace byly upraveny.', BasePresenter::FLASH_MESSAGE_SUCCESS);
+            $this->redirect('this');
+        };
+
+        return $control;
     }
 }

@@ -8,7 +8,7 @@
 
     {control newLocationFormComponent}
 
-    <h2 style="margin-top: 20px">O táboře - fotky</h2>
+    <h2 style="margin-top: 20px">O táboře - seznam fotek</h2>
     {ifset $camp->photos_about}
         {var $pictures = $camp->photos_about}
         <div style="display: block; margin-left: auto; margin-right: auto; margin-top: 20px">
@@ -20,7 +20,7 @@
             {/foreach}
         </div>
     {/ifset}
-    <h2 style="margin-top: 20px">Okolí tábora - fotky</h2>
+    <h2 style="margin-top: 20px">Okolí tábora - sezname fotek</h2>
     {ifset $camp->photos_surroundings}
         {var $pictures = $camp->photos_surroundings}
         <div style="display: block; margin-left: auto; margin-right: auto; margin-top: 20px">

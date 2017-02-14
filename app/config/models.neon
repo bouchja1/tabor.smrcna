@@ -29,6 +29,9 @@
 		mailsModel:
 			class: \Models\MailsModel
 
+		emailReceiversModel:
+			class: \Models\EmailReceiversModel
+
 		newsPhotoModel:
 			class: \Models\NewsPhotoModel
 

@@ -8,6 +8,7 @@ use App\Presenters\BasePresenter;
 use \Nette\Application\UI\Form,
     Components\BaseComponent;
 use Nette\Mail\Message;
+use Tracy\Debugger;
 
 final class ContactFormComponent extends BaseComponent {
 
@@ -17,9 +18,16 @@ final class ContactFormComponent extends BaseComponent {
     public $mailer;
     public $mailsModel;
 
-    public function __construct($mailsModel) {
+    private $smtpUsername;
+    private $smtpPass;
+    private $emailReceiversModel;
+
+    public $onContactFormSave;
+
+    public function __construct($mailsModel, $emailReceiversModel) {
         parent::__construct();
         $this->mailsModel = $mailsModel;
+        $this->emailReceiversModel = $emailReceiversModel;
     }
 
     /**
@@ -36,25 +44,53 @@ final class ContactFormComponent extends BaseComponent {
             // Lets send an email.
             $mail = new Message();
             $mail->setFrom($values["email"])
-                ->addTo('jan.bouchner@gmail.com')
                 ->setSubject('Email z webu taborsmrcna.cz')
-                ->setBody($values["message"]);
-            $this->mailer->send($mail);
-            // We will store it to a database.
-            $this->mailsModel->saveMail($values);
+                ->setBody("Zpráva odeslána z mailu: " . $values["email"] . " , obsah zprávy je: " . $values["message"]);
+
+            if (apache_getenv("APPLICATION_ENV") === 'production') {
+                $mailer = new \Nette\Mail\SmtpMailer([
+                    'host' => 'smtp.gmail.com',
+                    'username' => $this->smtpUsername,
+                    'password' => $this->smtpPass,
+                    'secure' => 'ssl',
+                ]);
+                $this->mailer = $mailer;
+            }
+
+            $receivers = $this->emailReceiversModel->findAllReceivers();
+
+            foreach ($receivers as $receiver) {
+                try {
+                    $mail->addTo($receiver->email);
+                    $this->mailer->send($mail);
+                    // We will store it to a database.
+                    $this->mailsModel->saveMail($values);
+                } catch (\Exception $e) {
+                    Debugger::log("Mail was not sent.");
+                }
+            }
+
             if ($this->presenter->isAjax()) {
                 $this->presenter->redrawControl('films');
             } else {
-                $this->redirect(":Front:Homepage:default");
+                $this->onContactFormSave($this);
             }
         } catch (\Exception $e) {
-            $this->flashMessage('Odeslání mailu selhalo.', BasePresenter::FLASH_MESSAGE_ERROR);
+            $this->flashMessage('Odeslání zprávy selhalo.', BasePresenter::FLASH_MESSAGE_ERROR);
             $form->addError($e->getMessage());
         }
     }
 
     public function setMailer($mailer) {
         $this->mailer = $mailer;
+    }
+
+    public function setSmtpUsername($username) {
+        $this->smtpUsername = $username;
+    }
+
+    public function setSmtpPass($pass) {
+        $this->smtpPass = $pass;
     }
 
 

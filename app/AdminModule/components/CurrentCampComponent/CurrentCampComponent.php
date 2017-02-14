@@ -20,6 +20,8 @@ final class CurrentCampComponent extends BaseComponent {
     public $currentCampModel;
     public $editedCurrentCamp;
 
+    public $onFormSave;
+
     /**
      * @var string
      */
@@ -68,7 +70,7 @@ final class CurrentCampComponent extends BaseComponent {
             if ($this->presenter->isAjax()) {
                 $this->presenter->redrawControl('films');
             } else {
-                $this->redirect(":Admin:Homepage:default");
+                $this->onFormSave($this);
             }
         } catch (\Exception $e) {
             $this->currentCampModel->rollbackTransaction();

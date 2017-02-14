@@ -2,6 +2,8 @@
 
 namespace AdminModule;
 
+use App\Presenters\BasePresenter;
+use FrontModule\Components\LocationComponent;
 use Nette;
 use App\Model;
 
@@ -69,9 +71,15 @@ class LocationPresenter extends ModuleBasePresenter
     }
 
     /**
-     * @return \FrontModule\Components\HistoryComponent
+     * @return \FrontModule\Components\LocationComponent
      */
     protected function createComponentNewLocationFormComponent() {
-        return $this->locationComponentFactory->create($this->locationModel, $this->locationPhotoModel, $this->editedCamp);
+        $control = $this->locationComponentFactory->create($this->locationModel, $this->locationPhotoModel, $this->editedCamp);
+        $control->onFormSave[] = function (LocationComponent $control) {
+            $this->flashMessage('Informace byly uloženy.', BasePresenter::FLASH_MESSAGE_SUCCESS);
+            $this->redirect('this');
+        };
+
+        return $control;
     }
 }

@@ -1,5 +1,4 @@
 {block sidebar}
-    neco
 {/block}
 
 {block content}
@@ -10,12 +9,10 @@
 
     <h2>Administrovat stávající</h2>
     <table class="table table-bordered">
-
         {foreach $news as $new}
             <tr>
                 <td>{$new->datetime}</td>
                 <td>{$new->text}</td>
-                <td><img src="{$new->image}" alt=""/></td>
                 <td><a href="{plink :Admin:News:edit $new->id}" title="Upravit">Upravit</a></td>
                 <td><a href="{plink :Admin:News:remove $new->id}" title="Smazat">Smazat</a></td>
             </tr>

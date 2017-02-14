@@ -4,6 +4,8 @@
 			implement: \FrontModule\Components\IContactFormComponentFactory
 			setup:
 			    - setMailer(@nette.mailer)
+			    - setSmtpUsername(%smtpCredentials.username%)
+			    - setSmtpPass(%smtpCredentials.password%)
 
 		newComponentFactory:
 			implement: \FrontModule\Components\INewComponentFactory
@@ -20,6 +22,9 @@
 				- setUploadDir(%uploader.uploadHistoryDir%)
 				- setThumbnail(%uploader.thumbnail%)
 				- setResized(%uploader.resized%)
+
+		emailReceiversComponentFactory:
+			implement: \AdminModule\Components\IEmailReceiversComponentFactory
 
 		locationComponentFactory:
 			implement: \FrontModule\Components\ILocationComponentFactory

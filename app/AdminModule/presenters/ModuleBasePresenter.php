@@ -14,12 +14,10 @@ abstract class ModuleBasePresenter extends \App\Presenters\BasePresenter {
 	 * @var \Models\Security\SecurityManager
 	 */
 	public $securityManager;
-	
+
 	protected function startup() {
 		parent::startup();
 		$user = $this->getUser();
-//		var_dump($user);
-//		die();
 		$this->checkPermission($user);
 	}
 	
@@ -28,17 +26,7 @@ abstract class ModuleBasePresenter extends \App\Presenters\BasePresenter {
 	}
 
 	protected function checkPermission(\Nette\Security\User $user) {
-		//$this->checkSignalPermission($user);
 		$this->checkActionPermission($user);
-	}
-
-	protected function checkSignalPermission(\Nette\Security\User $user) {
-		if ($this->isSignalReceiver($this)) {
-			if (!$user->isAllowed($this->reflection->name, $this->getSignalModifiedName())) {
-				$this->flashMessage(_('Nemáte právo vykonat požadovanou akci!'), self::FLASH_MESSAGE_ERROR);
-				$this->redirect('this');
-			}
-		}
 	}
 
 	protected function checkActionPermission(\Nette\Security\User $user) {

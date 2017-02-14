@@ -11,14 +11,28 @@ body {
 }
 
 a {
-    color: #000;
-    text-decoration: none
+    color: #3a87ad;
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 a:hover, a:focus, a:active {
     text-decoration: none;
     outline: none;
 }
+
+div.flash {
+    color: black;
+    background: #FFF9D7;
+    border: 1px solid #E2C822;
+    padding: 1em;
+    margin: 1em 0;
+}
+
+div.error {
+    background-color: #911f1f; }
+div.success {
+    background-color: #78b600; }
 
 input[type=text], input[type=password], textarea {
     border: 1px solid #ddd;
@@ -31,6 +45,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     margin: 0 0 15px;
     font-family: 'HelveticaNeue' !important;
+}
+
+h1 {
+    margin: 20px 0 15px 0;
 }
 
 img {
@@ -96,4 +114,15 @@ img {
     padding: 10px 15px;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+form label {
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.btn {
+    margin: 20px;
 }

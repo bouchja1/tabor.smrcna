@@ -1,5 +1,4 @@
 {block sidebar}
-    neco
 {/block}
 
 {block content}
@@ -12,7 +11,7 @@
             {foreach $newPhotos as $photo}
                 <a href="{$basePath}/images/gallery/news/{$photo->name}"><img
                             class="img-rounded" src="{$basePath}/images/gallery/news/thumbnail/{$photo->name}" style="width:195px;height:auto; margin: 2px"></a>
-                <td><a href="{plink :Admin:News:removeNewPhoto $photo->id}" title="Smazat">Smazat fotku</a></td>
+                <a href="{plink :Admin:News:removeNewPhoto $photo->id}" title="Smazat">Smazat fotku</a>
             {/foreach}
         </div>
     {/ifset}

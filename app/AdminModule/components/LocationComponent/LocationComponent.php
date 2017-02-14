@@ -27,6 +27,8 @@ final class LocationComponent extends BaseComponent
      */
     private $uploadDir;
 
+    public $onFormSave;
+
     /**
      * @var array(max_width, max_height)
      */
@@ -55,7 +57,6 @@ final class LocationComponent extends BaseComponent
         try {
             // We will store it to a database.
             $values["id"] = $this->locationModel->findLocation()["id"];
-            var_dump($values["id"]);
             $fileSurroundings = $values["files_surroundings"];
             $fileAbout = $values["files_about"];
             unset($values->files_about);
@@ -74,7 +75,7 @@ final class LocationComponent extends BaseComponent
             if ($this->presenter->isAjax()) {
                 $this->presenter->redrawControl('films');
             } else {
-                $this->redirect("Admin:Location:default");
+                $this->onFormSave($this);
             }
         } catch (\Exception $e) {
             $this->locationModel->rollbackTransaction();

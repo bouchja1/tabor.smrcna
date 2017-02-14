@@ -4,61 +4,52 @@
  *}
 <!DOCTYPE html>
 <html>
-    <head>
-		<title>{ifset title}{include title|striptags} | {/ifset}Nette Sandbox</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="{$basePath}/css/administration/style.css" rel="stylesheet" media="screen">
-        <link href="{$basePath}/css/responsive.css" rel="stylesheet" media="screen">
-        <link href="{$basePath}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
-        <link href="{$basePath}/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
-        <script src="//cloud.tinymce.com/stable/tinymce.min.js?apiKey=3r3bmv41vzlfk9j4ri4l5wbqchh6msndmthmg356to7x5ndo"></script>
-        <script>
-            tinyMCE.init({
-                mode: "specific_textareas",
-                editor_selector: "mceEditor",
-                plugins: "link",
-            });
-        </script>
-		{block head}{/block}
-	</head>
+<head>
+    <title>{ifset title}{include title|striptags} | {/ifset}Nette Sandbox</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{$basePath}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+    <link href="{$basePath}/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="{$basePath}/css/administration/style.css" rel="stylesheet" media="screen">
+    <link href="{$basePath}/css/responsive.css" rel="stylesheet" media="screen">
+    <script src="//cloud.tinymce.com/stable/tinymce.min.js?apiKey=3r3bmv41vzlfk9j4ri4l5wbqchh6msndmthmg356to7x5ndo"></script>
+    <script>
+        tinyMCE.init({
+            mode: "specific_textareas",
+            editor_selector: "mceEditor",
+            plugins: "link",
+        });
+    </script>
+    {block head}{/block}
+</head>
 
 <body>
-	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+
 
 <div class="fix header_area">
-   <div class="fix wrap header">
-      <div class="logo floatleft">
-         <h1>Admin</h1>
-      </div>
-       <div class="manu floatright">
-           <ul id="nav-top">
-               <li><a href="{plink :Admin:News:default}" title="Administrace novinek">Administrace novinek</a></li>
-               <li><a href="{plink :Admin:Warning:default}" title="Nepřehlédněte">Nepřehlédněte</a></li>
-               <li><a href="{plink :Admin:Location:default}" title="Lokalita">Lokalita</a></li>
-               <li><a href="{plink :Admin:Currently:default}" title="Aktuální tábor">Aktuální tábor</a></li>
-               <li><a href="{plink :Admin:History:default}" title="Historie">Historie</a></li>
-               <li><a href="{plink :Admin:Mails:default}" title="Obdržené maily">Obdržené maily</a></li>
-           </ul>
-       </div>
-   </div>
-</div>
-
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span2">
-                {include sidebar}
-            </div>
-            <div class="span10">
-                {include content}
-            </div>
+    <div class="fix wrap header">
+        <div class="logo floatleft">
+            <h1>Admin</h1>
+        </div>
+        <div class="manu floatright">
+            <ul id="nav-top">
+                <li><a href="{plink :Admin:News:default}" title="Administrace novinek">Administrace novinek</a></li>
+                <li><a href="{plink :Admin:Warning:default}" title="Nepřehlédněte">Nepřehlédněte</a></li>
+                <li><a href="{plink :Admin:Location:default}" title="Lokalita">Lokalita</a></li>
+                <li><a href="{plink :Admin:Currently:default}" title="Aktuální tábor">Aktuální tábor</a></li>
+                <li><a href="{plink :Admin:History:default}" title="Historie">Historie</a></li>
+                <li><a href="{plink :Admin:Mails:default}" title="Správa mailů">Správa mailů</a></li>
+            </ul>
         </div>
     </div>
+</div>
+<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+<div class="container theme-showcase" role="main">
+    {include content}
+</div>
 
+<script src="{$basePath}/bootstrap/js/bootstrap.js"></script>
+{include scripts}
 
-
-{block scripts}
-    <script src="{$basePath}/bootstrap/js/bootstrap.js"></script>
-{/block}
 </body>
 </html>

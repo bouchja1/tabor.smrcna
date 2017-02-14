@@ -36,7 +36,6 @@ final class Permission extends \Nette\Security\Permission {
         $this->addResource('FrontModule\AboutPresenter');
         $this->addResource('FrontModule\CampPresenter');
         $this->addResource('FrontModule\ContactPresenter');
-        $this->addResource('FrontModule\Error4xxPresenter');
         $this->addResource('FrontModule\ErrorPresenter');
         $this->addResource('FrontModule\HomepagePresenter');
         $this->addResource('FrontModule\LocationPresenter');
@@ -58,7 +57,6 @@ final class Permission extends \Nette\Security\Permission {
         $this->allow(self::GUEST, 'FrontModule\AboutPresenter', Permission::ALL);
         $this->allow(self::GUEST, 'FrontModule\CampPresenter', Permission::ALL);
         $this->allow(self::GUEST, 'FrontModule\ContactPresenter', Permission::ALL);
-        $this->allow(self::GUEST, 'FrontModule\Error4xxPresenter', Permission::ALL);
         $this->allow(self::GUEST, 'FrontModule\ErrorPresenter', Permission::ALL);
         $this->allow(self::GUEST, 'FrontModule\HomepagePresenter', Permission::ALL);
         $this->allow(self::GUEST, 'FrontModule\LocationPresenter', Permission::ALL);

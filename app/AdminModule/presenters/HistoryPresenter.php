@@ -2,6 +2,8 @@
 
 namespace AdminModule;
 
+use App\Presenters\BasePresenter;
+use FrontModule\Components\HistoryComponent;
 use Nette;
 use App\Model;
 
@@ -69,13 +71,25 @@ class HistoryPresenter extends ModuleBasePresenter
      * @return \FrontModule\Components\HistoryComponent
      */
     protected function createComponentNewHistoryFormComponent() {
-        return $this->historyComponentFactory->create($this->historyModel, $this->historyPhotoModel, null);
+        $control = $this->historyComponentFactory->create($this->historyModel, $this->historyPhotoModel, null);
+        $control->onFormSave[] = function (HistoryComponent $control) {
+            $this->flashMessage('Informace byly uloženy.', BasePresenter::FLASH_MESSAGE_SUCCESS);
+            $this->redirect('this');
+        };
+
+        return $control;
     }
 
     /**
      * @return \FrontModule\Components\HistoryComponent
      */
     protected function createComponentEditHistoryFormComponent() {
-        return $this->historyComponentFactory->create($this->historyModel, $this->historyPhotoModel, $this->editedHistory);
+        $control = $this->historyComponentFactory->create($this->historyModel, $this->historyPhotoModel, $this->editedHistory);
+        $control->onFormSave[] = function (HistoryComponent $control) {
+            $this->flashMessage('Informace byly upraveny.', BasePresenter::FLASH_MESSAGE_SUCCESS);
+            $this->redirect('this');
+        };
+
+        return $control;
     }
 }

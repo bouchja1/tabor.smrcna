@@ -10,10 +10,9 @@
 
     <h2>Přehled všech termínů v databázi</h2>
     {if $current != null}
-        <table>
+        <table class="table table-bordered">
         {foreach $current as $cur}
             <tr>
-                <td>{$cur->year}</td>
                 <td>{$cur->text}</td>
                 <td><a href="{plink :Admin:Currently:edit $cur->id}" title="Upravit">Upravit</a></td>
                 <td><a href="{plink :Admin:Currently:remove $cur->id}" title="Smazat">Smazat</a></td>

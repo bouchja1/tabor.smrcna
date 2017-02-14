@@ -3,7 +3,21 @@
 {/block}
 
 {block content}
-    <h1>Obdržené maily</h1>
+    <h1>Správa mailů</h1>
+    <h2>Příjemci mailů z formuláře na webu</h2>
+    <table class="table table-bordered">
+        {foreach $receivers as $receiver}
+            <tr>
+                <td>{$receiver->email}</td>
+                <td><a href="{plink :Admin:Mails:remove $receiver->id}" title="Smazat">Smazat</a></td>
+            </tr>
+        {/foreach}
+    </table>
+
+    <h3>Přidat nového příjemce</h3>
+    {control emailReceiversFormComponent}
+
+    <h2>Obdržené maily</h2>
     <table class="table table-bordered">
 
         {foreach $mails as $mail}

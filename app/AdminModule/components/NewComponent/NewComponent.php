@@ -21,6 +21,8 @@ final class NewComponent extends BaseComponent {
     public $newsPhotoModel;
     public $editedNew;
 
+    public $onFormSave;
+
     /**
      * @var string
      */
@@ -83,7 +85,7 @@ final class NewComponent extends BaseComponent {
             if ($this->presenter->isAjax()) {
                 $this->presenter->redrawControl('films');
             } else {
-                $this->redirect(":Admin:Homepage:default");
+                $this->onFormSave($this);
             }
         } catch (\Exception $e) {
             $this->newsModel->rollbackTransaction();

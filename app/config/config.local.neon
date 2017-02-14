@@ -7,6 +7,10 @@ parameters:
 			user: "root"
 			password: "root"
 
+		smtpCredentials:
+			username: "blah"
+			password: "blah"
+
 dibi:
 	driver: %database.driver%
 	host: %database.host%

@@ -6,9 +6,9 @@
             <li n:foreach="$form->errors as $error">{$error}</li>
         </ul>
 
-        <p>{input title class => "text"}</p>
+        <p>{label title /}{input title class => "text"}</p>
         <p>{input text }</p>
         <p>{label files /}</p>{input files}
-        <p>{input submit class => "submit" }</p>
+        <p>{input submit class => "btn btn-lg btn-default" }</p>
     {/form}
 </div>

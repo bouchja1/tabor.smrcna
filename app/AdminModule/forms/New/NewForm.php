@@ -13,6 +13,7 @@ final class NewForm extends \Nette\Application\UI\Form {
 
         $this->addText('title', 'Nadpis novinky:')
             ->setAttribute('placeholder', 'nadpis novinky')
+            ->setRequired(TRUE)
             ->setDefaultValue($editedNew["title"]);
 
         $this->addTextArea('text', 'Textové sdělení novinky:')

@@ -2,6 +2,8 @@
 
 namespace AdminModule;
 
+use App\Presenters\BasePresenter;
+use FrontModule\Components\NewComponent;
 use Nette;
 use App\Model;
 
@@ -69,14 +71,26 @@ class NewsPresenter extends ModuleBasePresenter
      * @return \FrontModule\Components\NewComponent
      */
     protected function createComponentNewFormComponent() {
-        return $this->newComponentFactory->create($this->newsModel, $this->newsPhotoModel, null);
+        $control = $this->newComponentFactory->create($this->newsModel, $this->newsPhotoModel, null);
+        $control->onFormSave[] = function (NewComponent $control) {
+            $this->flashMessage('Nový příspěvek byl uložen.', BasePresenter::FLASH_MESSAGE_SUCCESS);
+            $this->redirect('this');
+        };
+
+        return $control;
     }
 
     /**
      * @return \FrontModule\Components\NewComponent
      */
     protected function createComponentEditFormComponent() {
-        return $this->newComponentFactory->create($this->newsModel, $this->newsPhotoModel, $this->editedNew);
+        $control = $this->newComponentFactory->create($this->newsModel, $this->newsPhotoModel, $this->editedNew);
+        $control->onFormSave[] = function (NewComponent $control) {
+            $this->flashMessage('Příspěvek byl upraven.', BasePresenter::FLASH_MESSAGE_SUCCESS);
+            $this->redirect('News:default');
+        };
+
+        return $control;
     }
 
 }

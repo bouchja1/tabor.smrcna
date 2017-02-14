@@ -17,6 +17,8 @@ final class WarningComponent extends BaseComponent {
     public $warningsModel;
     public $editedWarning;
 
+    public $onFormSave;
+
     public function __construct($warningsModel, $editedWarning) {
         parent::__construct();
         $this->warningsModel = $warningsModel;
@@ -41,11 +43,10 @@ final class WarningComponent extends BaseComponent {
             } else {
                 $this->warningsModel->saveWarning($values);
             }
-            $this->presenter->flashMessage("Upozornění bylo uloženo.", "success");
             if ($this->presenter->isAjax()) {
                 $this->presenter->redrawControl('films');
             } else {
-                $this->redirect(":Admin:Homepage:default");
+                $this->onFormSave($this);
             }
         } catch (\Exception $e) {
             $this->flashMessage('Vkládání upozornění selhalo.', BasePresenter::FLASH_MESSAGE_ERROR);

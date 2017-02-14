@@ -13,10 +13,12 @@ final class HistoryForm extends \Nette\Application\UI\Form {
 
         $this->addText('year', 'Rok:')
             ->setAttribute('placeholder', 'rok kdy se tábor konal')
+            ->setRequired(TRUE)
             ->setDefaultValue($editedHistory["year"]);
 
         $this->addText('title', 'Táborové téma:')
             ->setAttribute('placeholder', 'táborové téma')
+            ->setRequired(TRUE)
             ->setDefaultValue($editedHistory["title"]);
 
         $this->addTextArea('text', 'Jak tábor probíhal:')

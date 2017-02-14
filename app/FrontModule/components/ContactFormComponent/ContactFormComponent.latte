@@ -1,5 +1,11 @@
 <div class="contact_form">
     {form contactForm class => "ajax contact_form"}
+        {if $form->hasErrors()}
+        <ul class="errors">
+            <li n:foreach="$form->errors as $error">{$error}</li>
+        </ul>
+        {/if}
+
         <p>{input email class => "email" }</p>
         <p>{input name class => "text"}</p>
         <p>{input message class => "textarea" }</p>

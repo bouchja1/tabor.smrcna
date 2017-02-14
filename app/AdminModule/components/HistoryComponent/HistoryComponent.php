@@ -22,6 +22,8 @@ final class HistoryComponent extends BaseComponent
     public $historyPhotoModel;
     public $editedHistory;
 
+    public $onFormSave;
+
     /**
      * @var string
      */
@@ -84,7 +86,7 @@ final class HistoryComponent extends BaseComponent
             if ($this->presenter->isAjax()) {
                 $this->presenter->redrawControl('films');
             } else {
-                $this->redirect(":Admin:Homepage:default");
+                $this->onFormSave($this);
             }
         } catch (\Exception $e) {
             $this->historyModel->rollbackTransaction();
