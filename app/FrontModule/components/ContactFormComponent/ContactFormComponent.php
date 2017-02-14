@@ -47,6 +47,7 @@ final class ContactFormComponent extends BaseComponent {
                 ->setSubject('Email z webu taborsmrcna.cz')
                 ->setBody("Zpráva odeslána z mailu: " . $values["email"] . " , obsah zprávy je: " . $values["message"]);
 
+            $envMailer = null;
             if (apache_getenv("APPLICATION_ENV") === 'production') {
                 $mailer = new \Nette\Mail\SmtpMailer([
                     'host' => 'smtp.gmail.com',
@@ -54,7 +55,9 @@ final class ContactFormComponent extends BaseComponent {
                     'password' => $this->smtpPass,
                     'secure' => 'ssl',
                 ]);
-                $this->mailer = $mailer;
+                $envMailer = $mailer;
+            } else {
+                $envMailer = $this->mailer;
             }
 
             $receivers = $this->emailReceiversModel->findAllReceivers();
@@ -62,7 +65,7 @@ final class ContactFormComponent extends BaseComponent {
             foreach ($receivers as $receiver) {
                 try {
                     $mail->addTo($receiver->email);
-                    $this->mailer->send($mail);
+                    $envMailer->send($mail);
                     // We will store it to a database.
                     $this->mailsModel->saveMail($values);
                 } catch (\Exception $e) {
