@@ -4,9 +4,11 @@
 
 namespace AdminModule\Components;
 
+use App\Presenters\BasePresenter;
 use Models\Security\SecurityManager;
 use \Nette\Application\UI\Form,
     Components\BaseComponent;
+use Nette\Security\AuthenticationException;
 
 final class SignComponent extends BaseComponent {
 
@@ -33,11 +35,16 @@ final class SignComponent extends BaseComponent {
         try {
             //$values = $form->getValues();
             $this->presenter->getUser()->setExpiration('+ 200 minutes', TRUE);
-            $this->presenter->getUser()->login($values->username, $values->password);
+            try {
+                $this->presenter->getUser()->login($values->username, $values->password);
+            } catch (AuthenticationException $ex) {
+                throw $ex;
+            }
             $this->presenter->restoreRequest($this->presenter->backlink);
             $this->redirectToAllowedPage();
         } catch (AuthenticationException $e) {
-            $form->addError($e->getMessage());
+            $this->presenter->flashMessage('Přihlašování selhalo: ' . $e->getMessage(), BasePresenter::FLASH_MESSAGE_ERROR);
+            $this->presenter->redirect(":Admin:Sign:default");
         }
     }
 

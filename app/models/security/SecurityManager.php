@@ -31,19 +31,6 @@ class SecurityManager {
 	 */
 	public $securityActionModel;
 	
-
-	public function findAllResourcesWithActions() {
-		$resources = $this->securityResourceModel->findAll()->orderBy('title')->fetchAssoc('id');
-		$actions = $this->securityActionModel->findAll()->orderBy('allowAll DESC, title')->fetchAll();
-		foreach ($actions as $action) {
-			if (!key_exists('actions', $resources[$action->securityResource_id])) {
-				$resources[$action->securityResource_id]->actions = array();
-			}
-			$resources[$action->securityResource_id]->actions[$action->id] = $action;
-		}
-		return $resources;
-	}
-	
 	public function isActionAllowed($userId,$resourceName,$actionName) {
 		$permissions = $this->findAllPermissionsByUserAndResourceAndAction($userId, $resourceName, $actionName);
 		return (bool) count($permissions) > 0;
@@ -94,38 +81,6 @@ class SecurityManager {
 			$this->getCache()->save($cacheKey, $permissions);
 		}
 		return $permissions;
-	}
-	
-	public function hasUserPermissionToArticle($userId,$articleId) {
-		$article = $this->articleModel->getById($articleId);
-		$articles = $this->allowedArticles($userId);
-		return $this->isArticleChildOfArticles($article, $articles);
-	}
-	
-	public function allowedArticles($userId) {
-		return $this->securityUserArticlePermissionModel->getDatabase()
-				->select("*")
-				->from(SecurityUserArticlePermissionModel::TABLE. " permission")
-				->join(ArticleModel::TABLE. " article" )->on("article.id = permission.article_id")
-				->where("permission.user_id = %i", $userId)
-				->fetchAll();
-	}
-	
-	public function isArticleChildOfArticles($article,$articles) {
-		return $this->articleModel->isArticleChildOfArticles($article, $articles);
-	}
-	
-	public function initializePrivileges($userId) {
-		$this->securityActionModel->getDatabase()->query(
-				"REPLACE INTO securityUserAction (user_id, securityAction_id ) "
-				. "SELECT %i AS user_id, id AS securityAction_id FROM securityAction WHERE allowAll = %b;",$userId,TRUE);
-		
-	}
-	
-	public function replaceAllUserPrivileges($userId, $values) {
-		$this->securityUserActionModel->replaceAllUserPrivileges($userId, $values);
-		$key = $this->getUserPrivilegesCacheKey($userId);
-		$this->getCache()->remove($key);
 	}
 	
 	private function getUserPrivilegesCacheKey($userId) {

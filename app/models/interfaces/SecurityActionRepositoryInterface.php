@@ -11,4 +11,6 @@ interface SecurityActionRepositoryInterface {
     public function findPermissionByUser($userId);
 
     public function findUserByUsername($username);
+
+    public function findSalt();
 }

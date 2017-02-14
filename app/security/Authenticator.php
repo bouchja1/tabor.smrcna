@@ -42,9 +42,9 @@ final class Authenticator extends \Nette\Object implements IAuthenticator {
 //		die();
 
 		if (!$row) {
-			throw new AuthenticationException("User " . $username . " not found.", self::IDENTITY_NOT_FOUND);
+			throw new AuthenticationException("Neznámý uživatel.", self::IDENTITY_NOT_FOUND);
 		} elseif (!$this->calculatePassword($password, $row["password"])) {
-			throw new AuthenticationException("The password is incorrect.", self::INVALID_CREDENTIAL);
+			throw new AuthenticationException("Chybné heslo.", self::INVALID_CREDENTIAL);
 		}
 
 		$arr = $row->toArray();
@@ -53,58 +53,14 @@ final class Authenticator extends \Nette\Object implements IAuthenticator {
 	}
 
 	private function calculatePassword($inputPassword, $dbStored) {
-		return true;
-	}
-
-	/**
-	 * Adds new user.
-	 *
-	 * @param  string $username
-	 * @param  string $email
-	 * @param  string $password
-	 * @return int
-	 */
-	public function addUser($username, $email, $password,$role) {
-		$this->userModel->insert([
-			"username" => $username,
-			"email" => $email,
-			"role" => $role,
-			"password" => Passwords::hash($password),
-		]);
-		$userId =  $this->userModel->getDatabase()->insertId();
-		if ($role !== Permission::ROLE_ADMIN) {
-			$this->securityManager->initializePrivileges($userId);
+		$salt = $this->securityActionModel->findSalt();
+		if (sizeof($salt) > 0) {
+			$calculatedPassword = base64_encode($inputPassword . $salt[0]->salt);
+			if ($calculatedPassword == $dbStored) {
+				return true;
+			}
 		}
-		return $userId;
-	}
-
-	/**
-	 * Edit user.
-	 *
-	 * @param  int    $id
-	 * @param  string $username
-	 * @param  string $email
-	 * @param  string $password
-	 * @return void
-	 */
-	public function editUser($id, $username, $email, $password,$role = NULL) {
-		$updateData = [
-			"id" => $id,
-			"username" => $username,
-			"email" => $email,
-			
-		];
-		if ($role !== NULL) {
-			$updateData["role"] = $role;
-		}
-		if ($password != "") {
-			$updateData["password"] = Passwords::hash($password);
-		}
-		$user = $this->userModel->getById($id);
-		if ($user->role == Permission::ROLE_ADMIN && $role != Permission::ROLE_ADMIN) {
-			$this->securityManager->initializePrivileges($id);
-		}
-		$this->userModel->update($updateData);
+		return false;
 	}
 
 }

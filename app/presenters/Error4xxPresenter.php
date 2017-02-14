@@ -1,9 +1,6 @@
 <?php
 
-namespace App\Presenters;
-
 use App\Presenters\BasePresenter;
-use Nette;
 
 class Error4xxPresenter extends BasePresenter
 {

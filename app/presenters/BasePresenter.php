@@ -17,6 +17,11 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     const FLASH_MESSAGE_ERROR = 'danger';
 
     /**
+     * @var \Models\WarningsModel
+     */
+    public $warningsModel;
+
+    /**
      * @inject
      * @var \Models\Security\SecurityManager
      */
@@ -24,6 +29,8 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
     protected function startup() {
         parent::startup();
+        $warnings = $this->warningsModel->findAllWarnings();
+        $this->template->warning = $warnings[0];
     }
 
     protected function getSignalModifiedName() {
@@ -37,5 +44,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
     protected function isSignal() {
         return $this->getSignal() !== NULL;
+    }
+
+    public final function injectWarningsModel(\Models\WarningsModel $warningsModel) {
+        $this->warningsModel = $warningsModel;
     }
 }

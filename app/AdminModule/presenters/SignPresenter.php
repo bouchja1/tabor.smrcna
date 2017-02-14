@@ -5,6 +5,7 @@
 namespace AdminModule;
 
 use AdminModule\Components\ISignComponentFactory;
+use AdminModule\Components\SignComponent;
 use App\Presenters\BasePresenter;
 use Nette\Application\UI\Form;
 use Nette\Security\Passwords;
@@ -22,7 +23,8 @@ class SignPresenter extends BasePresenter {
 	 * @return Form
 	 */
 	protected function createComponentLoginComponent() {
-		return $this->signComponentFactory->create();
+		$control = $this->signComponentFactory->create();
+		return $control;
 	}
 
 	public function renderDefault()

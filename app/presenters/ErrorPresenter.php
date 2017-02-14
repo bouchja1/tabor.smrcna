@@ -1,9 +1,5 @@
 <?php
 
-namespace App\Presenters;
-
-use App\FrontModule\Presenters\ModuleBasePresenter;
-use Nette;
 use Tracy\ILogger;
 
 

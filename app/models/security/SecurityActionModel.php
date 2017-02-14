@@ -28,5 +28,8 @@ final class SecurityActionModel {
 	public function findUserByUsername($username) {
 		return $this->securityActionsStore->findUserByUsername($username);
 	}
+	public function findSalt() {
+		return $this->securityActionsStore->findSalt();
+	}
 
 }

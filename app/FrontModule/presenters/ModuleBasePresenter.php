@@ -23,11 +23,6 @@ abstract class ModuleBasePresenter extends BasePresenter {
 	private $session;
 
 	/**
-	 * @var \Models\WarningsModel
-	 */
-	private $warningsModel;
-
-	/**
 	 * @var IStorage
 	 */
 	private $cacheStorage;
@@ -37,8 +32,6 @@ abstract class ModuleBasePresenter extends BasePresenter {
 		if (!$this->turnOffCache) {
 			$this->displayPageIfIsCached();
 		}
-		$warnings = $this->warningsModel->findAllWarnings();
-		$this->template->warning = $warnings[0];
 	}
 
 	/**
@@ -145,10 +138,6 @@ abstract class ModuleBasePresenter extends BasePresenter {
 			}
 			die;
 		}
-	}
-
-	public final function injectWarningsModel(\Models\WarningsModel $warningsModel) {
-		$this->warningsModel = $warningsModel;
 	}
 
 }

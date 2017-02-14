@@ -18,11 +18,6 @@ class WarningPresenter extends ModuleBasePresenter
 
     private $editedWarning;
 
-    /**
-     * @var \Models\WarningsModel
-     */
-    private $warningsModel;
-
     public function renderDefault()
     {
         $warnings = $this->warningsModel->findAllWarnings();
@@ -37,10 +32,6 @@ class WarningPresenter extends ModuleBasePresenter
     public function renderEdit()
     {
         $this->template->warning = $this->editedWarning;
-    }
-
-    public final function injectWarningsModel(\Models\WarningsModel $warningsModel) {
-        $this->warningsModel = $warningsModel;
     }
 
     public final function injectCreateWarningComponentFactory(\FrontModule\Components\IWarningComponentFactory $warningComponentFactory) {

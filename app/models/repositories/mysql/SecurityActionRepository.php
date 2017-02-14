@@ -10,9 +10,17 @@ use Models\Interfaces\SecurityActionRepositoryInterface;
 final class SecurityActionRepository extends BaseRepository implements SecurityActionRepositoryInterface {
 
     const TABLE_NAME = "securityAction";
+    const TABLE_NAME_SALT = "salt";
 
     public function findAllActions() {
         return $this->securityActionsQuery()->fetchAll();
+    }
+
+    public function findSalt() {
+        return $this->connection
+            ->select("salt")
+            ->from(self::TABLE_NAME_SALT)
+            ->fetchAll();
     }
 
     public function findPermissionByUser($userId) {
