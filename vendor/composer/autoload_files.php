@@ -6,7 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    '7745382c92b7799bf1294b1f43023ba2' => $vendorDir . '/tracy/tracy/src/shortcuts.php',
+    '19a7e2c3b1d506dcdc1b60aab8e102e4' => $vendorDir . '/tracy/tracy/src/Tracy/shortcuts.php',
+    'a12da592622097d2b593a430e32e13fd' => $vendorDir . '/nette/utils/src/loader.php',
     'a1d067aa2e53d6b47171c03cfc0ea5be' => $vendorDir . '/nette/safe-stream/src/loader.php',
     '0097ca414fcb37c7130ac24b05f485f8' => $vendorDir . '/dibi/dibi/src/loader.php',
 );

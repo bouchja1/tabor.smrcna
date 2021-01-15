@@ -5,6 +5,8 @@
  * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
+declare(strict_types=1);
+
 namespace Nette\PhpGenerator;
 
 use Nette;
@@ -12,189 +14,98 @@ use Nette;
 
 /**
  * Class property description.
+ *
+ * @property mixed $value
  */
-class Property extends Nette\Object
+final class Property
 {
-	/** @var string */
-	private $name = '';
+	use Nette\SmartObject;
+	use Traits\NameAware;
+	use Traits\VisibilityAware;
+	use Traits\CommentAware;
 
 	/** @var mixed */
-	public $value;
+	private $value;
 
 	/** @var bool */
-	private $static = FALSE;
+	private $static = false;
 
-	/** @var string  public|protected|private */
-	private $visibility = 'public';
+	/** @var string|null */
+	private $type;
 
-	/** @var string[] */
-	private $documents = array();
+	/** @var bool */
+	private $nullable = false;
 
-
-	/**
-	 * @return self
-	 */
-	public static function from(\ReflectionProperty $from)
-	{
-		$prop = new static($from->getName());
-		$defaults = $from->getDeclaringClass()->getDefaultProperties();
-		$prop->value = isset($defaults[$prop->name]) ? $defaults[$prop->name] : NULL;
-		$prop->static = $from->isStatic();
-		$prop->visibility = $from->isPrivate() ? 'private' : ($from->isProtected() ? 'protected' : 'public');
-		$prop->documents = $from->getDocComment() ? array(preg_replace('#^\s*\* ?#m', '', trim($from->getDocComment(), "/* \r\n\t"))) : array();
-		return $prop;
-	}
+	/** @var bool */
+	private $initialized = false;
 
 
-	/**
-	 * @param  string  without $
-	 */
-	public function __construct($name = '')
-	{
-		$this->setName($name);
-	}
-
-
-	/**
-	 * @param  string  without $
-	 * @return self
-	 */
-	public function setName($name)
-	{
-		$this->name = (string) $name;
-		return $this;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getName()
-	{
-		return $this->name;
-	}
-
-
-	/**
-	 * @return self
-	 */
-	public function setValue($val)
+	/** @return static */
+	public function setValue($val): self
 	{
 		$this->value = $val;
 		return $this;
 	}
 
 
-	/**
-	 * @return mixed
-	 */
-	public function getValue()
+	public function &getValue()
 	{
 		return $this->value;
 	}
 
 
-	/**
-	 * @param  bool
-	 * @return self
-	 */
-	public function setStatic($state = TRUE)
+	/** @return static */
+	public function setStatic(bool $state = true): self
 	{
-		$this->static = (bool) $state;
+		$this->static = $state;
 		return $this;
 	}
 
 
-	/**
-	 * @return bool
-	 */
-	public function isStatic()
+	public function isStatic(): bool
 	{
 		return $this->static;
 	}
 
 
-	/**
-	 * @param  string  public|protected|private
-	 * @return self
-	 */
-	public function setVisibility($val)
+	/** @return static */
+	public function setType(?string $val): self
 	{
-		if (!in_array($val, array('public', 'protected', 'private'), TRUE)) {
-			throw new Nette\InvalidArgumentException('Argument must be public|protected|private.');
-		}
-		$this->visibility = (string) $val;
+		$this->type = $val;
 		return $this;
 	}
 
 
-	/**
-	 * @return string
-	 */
-	public function getVisibility()
+	public function getType(): ?string
 	{
-		return $this->visibility;
+		return $this->type;
 	}
 
 
-	/**
-	 * @param  string|NULL
-	 * @return self
-	 */
-	public function setComment($val)
+	/** @return static */
+	public function setNullable(bool $state = true): self
 	{
-		$this->documents = $val ? array((string) $val) : array();
+		$this->nullable = $state;
 		return $this;
 	}
 
 
-	/**
-	 * @return string|NULL
-	 */
-	public function getComment()
+	public function isNullable(): bool
 	{
-		return implode($this->documents) ?: NULL;
+		return $this->nullable;
 	}
 
 
-	/**
-	 * @param  string
-	 * @return self
-	 */
-	public function addComment($val)
+	/** @return static */
+	public function setInitialized(bool $state = true): self
 	{
-		return $this->addDocument($val);
-	}
-
-
-	/**
-	 * @param  string[]
-	 * @return self
-	 */
-	public function setDocuments(array $s)
-	{
-		$this->documents = $s;
+		$this->initialized = $state;
 		return $this;
 	}
 
 
-	/**
-	 * @return string[]
-	 */
-	public function getDocuments()
+	public function isInitialized(): bool
 	{
-		return $this->documents;
+		return $this->initialized;
 	}
-
-
-	/**
-	 * @param  string
-	 * @return self
-	 */
-	public function addDocument($s)
-	{
-		$this->documents[] = (string) $s;
-		return $this;
-	}
-
 }

@@ -13,9 +13,11 @@ use Nette;
 /**
  * Provides the base class for a generic list (items can be accessed by index).
  */
-class ArrayList extends Nette\Object implements \ArrayAccess, \Countable, \IteratorAggregate
+class ArrayList implements \ArrayAccess, \Countable, \IteratorAggregate
 {
-	private $list = array();
+	use Nette\SmartObject;
+
+	private $list = [];
 
 
 	/**
@@ -40,21 +42,25 @@ class ArrayList extends Nette\Object implements \ArrayAccess, \Countable, \Itera
 
 	/**
 	 * Replaces or appends a item.
-	 * @param  int|NULL
+	 * @param  int|null
 	 * @param  mixed
 	 * @return void
 	 * @throws Nette\OutOfRangeException
 	 */
 	public function offsetSet($index, $value)
 	{
-		if ($index === NULL) {
+		if ($index !== null && !is_int($index)) {
+			trigger_error('Index is not integer.', E_USER_NOTICE);
+			$index = (int) $index;
+		}
+		if ($index === null) {
 			$this->list[] = $value;
 
 		} elseif ($index < 0 || $index >= count($this->list)) {
 			throw new Nette\OutOfRangeException('Offset invalid or out of range');
 
 		} else {
-			$this->list[(int) $index] = $value;
+			$this->list[$index] = $value;
 		}
 	}
 
@@ -67,10 +73,14 @@ class ArrayList extends Nette\Object implements \ArrayAccess, \Countable, \Itera
 	 */
 	public function offsetGet($index)
 	{
+		if (!is_int($index)) {
+			trigger_error('Index is not integer.', E_USER_NOTICE);
+			$index = (int) $index;
+		}
 		if ($index < 0 || $index >= count($this->list)) {
 			throw new Nette\OutOfRangeException('Offset invalid or out of range');
 		}
-		return $this->list[(int) $index];
+		return $this->list[$index];
 	}
 
 
@@ -93,10 +103,26 @@ class ArrayList extends Nette\Object implements \ArrayAccess, \Countable, \Itera
 	 */
 	public function offsetUnset($index)
 	{
+		if (!is_int($index)) {
+			trigger_error('Index is not integer.', E_USER_NOTICE);
+			$index = (int) $index;
+		}
 		if ($index < 0 || $index >= count($this->list)) {
 			throw new Nette\OutOfRangeException('Offset invalid or out of range');
 		}
-		array_splice($this->list, (int) $index, 1);
+		array_splice($this->list, $index, 1);
 	}
 
+
+	/**
+	 * Prepends a item.
+	 * @param  mixed
+	 * @return void
+	 */
+	public function prepend($value)
+	{
+		$first = array_slice($this->list, 0, 1);
+		$this->offsetSet(0, $value);
+		array_splice($this->list, 1, 0, $first);
+	}
 }
