@@ -72,7 +72,7 @@ final class HistoryModel
     public function saveHistory($values)
     {
         $this->historyStore->insert($values);
-        $historyId = $this->historyStore->getDatabase()->insertId();
+        $historyId = $this->historyStore->getDatabase()->getInsertId();
         return $historyId;
     }
 }

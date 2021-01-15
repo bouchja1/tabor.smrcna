@@ -20,7 +20,7 @@ abstract class ModuleBasePresenter extends \App\Presenters\BasePresenter {
 		$user = $this->getUser();
 		$this->checkPermission($user);
 	}
-	
+
 	protected function beforeRender() {
 		parent::beforeRender();
 	}
@@ -30,7 +30,7 @@ abstract class ModuleBasePresenter extends \App\Presenters\BasePresenter {
 	}
 
 	protected function checkActionPermission(\Nette\Security\User $user) {
-		if (!$user->isAllowed($this->reflection->name, $this->getAction())) {
+		if (!$user->isAllowed($this->getReflection()->name, $this->getAction())) {
 			$this->flashMessage(_('Nemáte právo vykonat požadovanou akci!'), self::FLASH_MESSAGE_ERROR);
 
 			// warning: $user->loggedIn() check is mandatory, because $user->getId is present even user is not logged

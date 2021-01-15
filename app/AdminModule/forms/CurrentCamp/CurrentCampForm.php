@@ -18,7 +18,7 @@ final class CurrentCampForm extends \Nette\Application\UI\Form {
         $this->addTextArea('text', 'Text pro aktuální termín:')
             ->setAttribute('placeholder', 'sem zadejte text pro aktuální termín')
             ->setAttribute('class', 'mceEditor')
-            ->setDefaultValue($editedCurrentCamp["text"]);
+            ->setDefaultValue($editedCurrentCamp ? $editedCurrentCamp["text"] : null);
 
         $this->addSubmit('submit', 'Odeslat');
     }

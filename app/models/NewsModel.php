@@ -77,7 +77,7 @@ final class NewsModel
     public function saveNew($values)
     {
         $this->newsStore->insert($values);
-        $newId = $this->newsStore->getDatabase()->insertId();
+        $newId = $this->newsStore->getDatabase()->getInsertId();
         return $newId;
     }
 }

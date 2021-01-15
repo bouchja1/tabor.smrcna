@@ -14,12 +14,13 @@ final class NewForm extends \Nette\Application\UI\Form {
         $this->addText('title', 'Nadpis novinky:')
             ->setAttribute('placeholder', 'nadpis novinky')
             ->setRequired(TRUE)
-            ->setDefaultValue($editedNew["title"]);
+            ->setDefaultValue($editedNew ? $editedNew["title"] : null);
 
         $this->addTextArea('text', 'Textové sdělení novinky:')
             ->setAttribute('placeholder', 'text novinky')
             ->setAttribute('class', 'mceEditor')
-            ->setDefaultValue($editedNew["text"])
+            ->setRequired(FALSE)
+            ->setDefaultValue($editedNew ? $editedNew["text"] : null)
             ->addRule(Form::MAX_LENGTH, 'Vaše zpráva je příliš dlouhá', 10000);
 
         $this->addMultiUpload('files', 'Obrázky k novince')
@@ -27,7 +28,7 @@ final class NewForm extends \Nette\Application\UI\Form {
 
         $this->addText('youtube_video', 'HTTP odkaz na YouTube video:')
             ->setAttribute('placeholder', 'odkaz na video')
-            ->setDefaultValue($editedNew["youtube_video"])
+            ->setDefaultValue($editedNew ? $editedNew["youtube_video"] : null)
             ->setRequired(FALSE);
 
         $this->addSubmit('submit', 'Odeslat');

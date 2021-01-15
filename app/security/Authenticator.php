@@ -11,7 +11,8 @@ use Nette\Security\AuthenticationException,
 	Nette\Security\Identity;
 use Nette\Security\Passwords;
 
-final class Authenticator extends \Nette\Object implements IAuthenticator {
+final class Authenticator implements IAuthenticator {
+    use \Nette\SmartObject;
 
 	/** @var \Models\SecurityActionModel */
 	private $securityActionModel;

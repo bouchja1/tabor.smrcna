@@ -14,13 +14,14 @@ final class WarningsForm extends \Nette\Application\UI\Form {
         $this->addText('title', 'Nadpis:')
             ->setAttribute('placeholder', 'sem zadejte nadpis (spíše kratší)')
             ->setRequired(TRUE)
-            ->setDefaultValue($editedWarning["title"])
+            ->setDefaultValue($editedWarning ? $editedWarning["title"] : null)
             ->addRule(Form::MAX_LENGTH, 'Vaše zpráva je příliš dlouhá', 50);
 
         $this->addTextArea('text', 'Text sdělení:')
             ->setAttribute('placeholder', 'sem zadejte sdělení')
             ->setAttribute('class', 'mceEditor')
-            ->setDefaultValue($editedWarning["text"])
+            ->setRequired(FALSE)
+            ->setDefaultValue($editedWarning ? $editedWarning["text"] : null)
             ->addRule(Form::MAX_LENGTH, 'Vaše zpráva je příliš dlouhá', 255);
 
         $this->addSubmit('submit', 'Odeslat');

@@ -40,7 +40,7 @@ final class SignComponent extends BaseComponent {
             } catch (AuthenticationException $ex) {
                 throw $ex;
             }
-            $this->presenter->restoreRequest($this->presenter->backlink);
+            $this->presenter->restoreRequest([$this->presenter, 'backlink']);
             $this->redirectToAllowedPage();
         } catch (AuthenticationException $e) {
             $this->presenter->flashMessage('Přihlašování selhalo: ' . $e->getMessage(), BasePresenter::FLASH_MESSAGE_ERROR);

@@ -14,7 +14,8 @@ final class LocationForm extends \Nette\Application\UI\Form {
         $this->addTextArea('text_about', 'O táboře:')
             ->setAttribute('placeholder', 'text o táboře')
             ->setAttribute('class', 'mceEditor')
-            ->setDefaultValue($editedCamp["text_about"])
+            ->setRequired(FALSE)
+            ->setDefaultValue($editedCamp ? $editedCamp["text_about"] : null)
             ->addRule(Form::MAX_LENGTH, 'Vaše zpráva je příliš dlouhá', 50000);
 
         $this->addMultiUpload('files_about', 'Obrázky k textu o táboře')
@@ -23,7 +24,8 @@ final class LocationForm extends \Nette\Application\UI\Form {
         $this->addTextArea('text_surroundings', 'Okolí tábora:')
             ->setAttribute('placeholder', 'text okolí tábora')
             ->setAttribute('class', 'mceEditor')
-            ->setDefaultValue($editedCamp["text_surroundings"])
+            ->setRequired(FALSE)
+            ->setDefaultValue($editedCamp ? $editedCamp["text_surroundings"] : null)
             ->addRule(Form::MAX_LENGTH, 'Vaše zpráva je příliš dlouhá', 50000);
 
         $this->addMultiUpload('files_surroundings', 'Obrázky k textu okolí tábora')

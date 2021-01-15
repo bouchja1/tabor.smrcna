@@ -1,11 +1,11 @@
 parameters:
 
 		database:
-			driver: mysql
+			driver: mysqli
 			host: "127.0.0.1"
-			database: "smrcna"
-			user: "root"
-			password: "root"
+			database: "fjooga-dev"
+			user: "fjoogym"
+			password: "Bouchymilujepivo89"
 
 		smtpCredentials:
 			username: "blah"

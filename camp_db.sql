@@ -6,8 +6,8 @@ CREATE TABLE IF NOT EXISTS `current_year_info` (
   `active` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
-INSERT INTO `current_year_info` (`id`, `year`, `text`, `poster`, `active`) VALUES
-(1, 0, 'blahblah', 'poster.png', 1);
+INSERT INTO `current_year_info` (`id`, `text`, `poster`, `active`) VALUES
+(1, 'blahblah', 'poster.png', 1);
 
 CREATE TABLE IF NOT EXISTS `email_receivers` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,

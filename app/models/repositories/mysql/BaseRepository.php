@@ -4,13 +4,14 @@
 
 namespace Models\Repositories\MySql;
 
-abstract class BaseRepository extends \Nette\Object
+abstract class BaseRepository
 {
+    use \Nette\SmartObject;
 
-    /** @var \DibiConnection */
+    /** @var \Dibi\Connection */
     protected $connection;
 
-    public function __construct(\DibiConnection $connection)
+    public function __construct(\Dibi\Connection $connection)
     {
         $this->connection = $connection;
     }
@@ -124,7 +125,7 @@ abstract class BaseRepository extends \Nette\Object
     }
 
     /**
-     * @return \DibiConnection
+     * @return \Dibi\Connection
      */
     final public function getDatabase()
     {

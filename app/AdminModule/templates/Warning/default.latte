@@ -11,11 +11,11 @@
     <h2>Administrovat stávající</h2>
     <table class="table table-bordered">
 
-        {foreach $warnings as $warning}
+        {foreach $warnings as $warn}
             <tr>
-                <td>{$warning->title}</td>
-                <td>{$warning->text}</td>
-                <td><a href="{plink :Admin:Warning:edit $warning->id}" title="Upravit">Upravit</a></td>
+                <td>{$warn->title}</td>
+                <td>{$warn->text}</td>
+                <td><a href="{plink :Admin:Warning:edit $warn->id}" title="Upravit">Upravit</a></td>
             </tr>
         {/foreach}
     </table>

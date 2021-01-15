@@ -4,6 +4,8 @@
 
 namespace Components;
 
+use Nette\Utils\Reflection;
+
 abstract class BaseComponent extends \Nette\Application\UI\Control {
 
     protected $autoSetupTemplateFile = TRUE;
