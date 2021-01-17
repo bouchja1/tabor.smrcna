@@ -59,7 +59,7 @@ class MailsPresenter extends ModuleBasePresenter
     protected function createComponentEmailReceiversFormComponent() {
         $control = $this->emailReceiversComponentFactory->create($this->emailReceiversModel);
         $control->onFormSave[] = function (EmailReceiversComponent $control) {
-            $this->flashMessage('Upozornění byloNový příjemce táborových mailů byl v pořádku uložen.', BasePresenter::FLASH_MESSAGE_SUCCESS);
+            $this->flashMessage('Nový příjemce táborových mailů byl v pořádku uložen.', BasePresenter::FLASH_MESSAGE_SUCCESS);
             $this->redirect('this');
         };
 

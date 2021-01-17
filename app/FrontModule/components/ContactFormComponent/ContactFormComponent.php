@@ -47,18 +47,13 @@ final class ContactFormComponent extends BaseComponent {
                 ->setSubject('Email z webu taborsmrcna.cz')
                 ->setBody("Zpráva odeslána z mailu: " . $values["email"] . " , obsah zprávy je: " . $values["message"]);
 
-            $envMailer = null;
-            if (apache_getenv("APPLICATION_ENV") === 'production') {
-                $mailer = new \Nette\Mail\SmtpMailer([
-                    'host' => 'smtp.gmail.com',
+            $mailer = new \Nette\Mail\SmtpMailer([
+                    'host' => 'mail.gigaserver.cz',
                     'username' => $this->smtpUsername,
                     'password' => $this->smtpPass,
                     'secure' => 'ssl',
-                ]);
-                $envMailer = $mailer;
-            } else {
-                $envMailer = $this->mailer;
-            }
+            ]);
+            $envMailer = $mailer;
 
             $receivers = $this->emailReceiversModel->findAllReceivers();
 

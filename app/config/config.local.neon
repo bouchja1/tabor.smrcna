@@ -3,9 +3,9 @@ parameters:
 		database:
 			driver: mysqli
 			host: "127.0.0.1"
-			database: "fjooga-dev"
-			user: "fjoogym"
-			password: "Bouchymilujepivo89"
+			database: "smrcna"
+			user: "tabor"
+			password: "heslo"
 
 		smtpCredentials:
 			username: "blah"

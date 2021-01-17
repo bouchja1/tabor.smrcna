@@ -1,7 +1,7 @@
 parameters:
 
 		database:
-			driver: mysqli
+			driver: mysql
 			host: "#<<!DB_HOST!>>#"
 			database: "#<<!DB_NAME!>>#"
 			user: "#<<!DB_USERNAME!>>#"
